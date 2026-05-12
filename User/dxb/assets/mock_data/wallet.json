@@ -1,0 +1,10 @@
+{
+  "balance": "₹1,240.50",
+  "currency": "INR",
+  "transactions": [
+    {"id": "t1", "title": "Cashback — Food order", "amount": "+ ₹40", "date": "May 6, 2026", "type": "credit"},
+    {"id": "t2", "title": "Paid — Laundry", "amount": "– ₹280", "date": "May 2, 2026", "type": "debit"},
+    {"id": "t3", "title": "Added money", "amount": "+ ₹500", "date": "Apr 28, 2026", "type": "credit"}
+  ],
+  "quickAmounts": [100, 200, 500, 1000]
+}

@@ -1,0 +1,11 @@
+{
+  "faqs": [
+    {"id": "f1", "q": "How do I change my delivery address?", "a": "Go to Profile → Saved Addresses and set a default, or change at checkout."},
+    {"id": "f2", "q": "How do refunds work?", "a": "Refunds for eligible orders are credited to your wallet within 5–7 business days."},
+    {"id": "f3", "q": "How to contact a provider?", "a": "Open your active order and tap Chat to message the provider."}
+  ],
+  "contactOptions": [
+    {"id": "call", "label": "Call support", "value": "1800-123-4567"},
+    {"id": "email", "label": "Email", "value": "help@multiserve.app"}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "restaurant": "Biryani Palace",
+  "items": [
+    {"name": "Chicken Biryani × 1", "price": "₹220"},
+    {"name": "Paneer Butter Masala × 1", "price": "₹180"},
+    {"name": "Naan × 2", "price": "₹60"}
+  ],
+  "subtotal": "₹460",
+  "deliveryFee": "FREE",
+  "gst": "₹23",
+  "total": "₹483",
+  "paymentMethods": [
+    {"id": "upi", "label": "UPI / GPay / PhonePe", "selected": true},
+    {"id": "card", "label": "Credit / Debit Card", "selected": false},
+    {"id": "cod", "label": "Cash on Delivery", "selected": false}
+  ]
+}

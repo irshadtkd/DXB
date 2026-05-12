@@ -1,0 +1,22 @@
+{
+  "heroTag": "Express Available",
+  "heroTitle": "Expert care for\nyour wardrobe",
+  "heroSubtitle": "Pickup & delivery within 24–48 hrs",
+  "heroCta": "Schedule Pickup",
+  "heroRating": "4.8 · 12K+ orders",
+  "services": [
+    {"id": "wash_fold", "title": "Wash & Fold", "priceFrom": "From ₹80/kg", "popular": true, "iconKey": "laundry"},
+    {"id": "dry_clean", "title": "Dry Cleaning", "priceFrom": "From ₹250/item", "popular": false, "iconKey": "dry_cleaning"},
+    {"id": "iron", "title": "Ironing", "priceFrom": "From ₹40/item", "popular": false, "iconKey": "iron"},
+    {"id": "express", "title": "Express", "priceFrom": "Same day ⚡", "popular": false, "iconKey": "bolt", "accent": "amber"}
+  ],
+  "coupons": [
+    {"code": "SPARK30", "title": "30% OFF", "subtitle": "On first order above ₹300", "gradient": ["#1C2B6B", "#2E408A"]},
+    {"code": "WKNDXP", "title": "FREE", "subtitle": "Express delivery on weekends", "gradient": ["#3D7A5F", "#2D6349"]},
+    {"code": "DRY50", "title": "₹50 OFF", "subtitle": "Dry cleaning min 2 items", "gradient": ["#D4881A", "#F5A623"]}
+  ],
+  "previousOrders": [
+    {"id": "lo1", "type": "Wash & Fold", "detail": "3.5 kg · May 2, 2026", "amount": "₹280", "status": "delivered"},
+    {"id": "lo2", "type": "Dry Cleaning", "detail": "2 suits · Apr 25, 2026", "amount": "₹500", "status": "delivered"}
+  ]
+}

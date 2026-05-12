@@ -1,0 +1,9 @@
+{
+  "orderTitle": "Biryani Palace",
+  "orderSubtitle": "Order FD-99201 · May 5, 2026",
+  "aspects": [
+    {"id": "food", "label": "Food quality"},
+    {"id": "pack", "label": "Packaging"},
+    {"id": "delivery", "label": "Delivery"}
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "orders": [
+    {
+      "id": "o1",
+      "category": "food",
+      "title": "Biryani Palace",
+      "subtitle": "3 items · May 5, 2026 · 1:32 PM",
+      "amount": "₹483",
+      "status": "delivered",
+      "emoji": "🍛"
+    },
+    {
+      "id": "o2",
+      "category": "laundry",
+      "title": "SparkClean",
+      "subtitle": "Wash & Fold · 3kg · May 7",
+      "amount": "₹240",
+      "status": "in_wash",
+      "iconKey": "laundry"
+    },
+    {
+      "id": "o3",
+      "category": "car",
+      "title": "QuickDrive Rentals",
+      "subtitle": "Maruti Swift · 1 day · Apr 28",
+      "amount": "₹1,200",
+      "status": "cancelled",
+      "emoji": "🚗"
+    },
+    {
+      "id": "o4",
+      "category": "food",
+      "title": "Pizza Republic",
+      "subtitle": "2 items · Apr 25, 2026 · 8:12 PM",
+      "amount": "₹720",
+      "status": "delivered",
+      "emoji": "🍕",
+      "ratingNote": "★ 4.5 rated"
+    }
+  ]
+}

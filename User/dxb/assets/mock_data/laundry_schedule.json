@@ -1,0 +1,33 @@
+{
+  "addressTitle": "Flat 4B, Green Valley Apts",
+  "addressSubtitle": "Kakkanad, Kochi – 682030",
+  "dates": [
+    {"weekday": "THU", "day": 8, "month": "May", "selected": true},
+    {"weekday": "FRI", "day": 9, "month": "May", "selected": false},
+    {"weekday": "SAT", "day": 10, "month": "May", "selected": false},
+    {"weekday": "SUN", "day": 11, "month": "May", "selected": false},
+    {"weekday": "MON", "day": 12, "month": "May", "selected": false}
+  ],
+  "timeSlots": [
+    {"id": "t1", "label": "8 AM – 10 AM", "icon": "wb_sunny", "selected": true},
+    {"id": "t2", "label": "11 AM – 1 PM", "icon": "light_mode", "selected": false},
+    {"id": "t3", "label": "2 PM – 4 PM", "icon": "partly_cloudy_day", "selected": false},
+    {"id": "t4", "label": "6 PM – 8 PM", "icon": "nights_stay", "selected": false}
+  ],
+  "laundryTypes": [
+    {"id": "casuals", "label": "👕 Casuals", "selected": true},
+    {"id": "formals", "label": "👔 Formals", "selected": true},
+    {"id": "woolens", "label": "🧥 Woolens", "selected": false},
+    {"id": "bedsheets", "label": "🛏 Bedsheets", "selected": false},
+    {"id": "delicates", "label": "🧦 Delicates", "selected": false}
+  ],
+  "weightLabel": "3–5 kg",
+  "weightHint": "~10–15 garments",
+  "weightUnits": 3,
+  "estimateLines": [
+    {"label": "Wash & Fold (3 kg)", "value": "₹240"},
+    {"label": "Ironing (2 items)", "value": "₹80"},
+    {"label": "Pickup Fee", "value": "Free", "highlight": "sage"}
+  ],
+  "totalEstimate": "₹320"
+}

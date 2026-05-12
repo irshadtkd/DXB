@@ -1,0 +1,41 @@
+{
+  "locationShort": "Kakkanad, KL",
+  "cartCount": 2,
+  "categories": [
+    {"id": "all", "label": "All"},
+    {"id": "healthy", "label": "🥗 Healthy"},
+    {"id": "fast", "label": "🍕 Fast Food"},
+    {"id": "asian", "label": "🍜 Asian"},
+    {"id": "indian", "label": "🍛 Indian"},
+    {"id": "cafe", "label": "☕ Café"}
+  ],
+  "dealTitle": "Today's Deal",
+  "dealHeadline": "Free delivery\non orders ₹200+",
+  "dealCta": "Order Now",
+  "restaurants": [
+    {
+      "id": "r1",
+      "name": "Biryani Palace",
+      "minOrder": "₹200 min",
+      "rating": 4.7,
+      "eta": "30–40 min",
+      "delivery": "Free delivery",
+      "deliveryFree": true,
+      "badge": "25% OFF",
+      "heroEmoji": "🍛",
+      "heroGradient": ["#2C3E50", "#3498DB"]
+    },
+    {
+      "id": "r2",
+      "name": "GreenBowl Co.",
+      "minOrder": "₹150 min",
+      "rating": 4.5,
+      "eta": "20–30 min",
+      "delivery": "₹30 delivery",
+      "deliveryFree": false,
+      "badge": "Veg · Healthy",
+      "heroEmoji": "🥗",
+      "heroGradient": ["#1B5E20", "#388E3C"]
+    }
+  ]
+}

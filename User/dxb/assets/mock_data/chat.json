@@ -1,0 +1,10 @@
+{
+  "threadId": "chat_sparkclean",
+  "providerName": "SparkClean",
+  "status": "Online",
+  "messages": [
+    {"id": "m1", "from": "provider", "text": "Hi! Your pickup is scheduled for Thu 8 May, 8–10 AM.", "time": "9:41 AM"},
+    {"id": "m2", "from": "user", "text": "Can we shift to 11 AM slot?", "time": "9:43 AM"},
+    {"id": "m3", "from": "provider", "text": "Yes, updated. You'll get a confirmation shortly.", "time": "9:44 AM"}
+  ]
+}

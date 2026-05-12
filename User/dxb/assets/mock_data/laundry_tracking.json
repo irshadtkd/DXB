@@ -1,0 +1,14 @@
+{
+  "orderId": "LND-7821",
+  "status": "Out for delivery",
+  "steps": [
+    {"id": "s1", "title": "Pickup scheduled", "done": true, "time": "Thu 8 May, 9:12 AM"},
+    {"id": "s2", "title": "Picked up", "done": true, "time": "Thu 8 May, 9:45 AM"},
+    {"id": "s3", "title": "In wash", "done": true, "time": "Thu 8 May, 2:30 PM"},
+    {"id": "s4", "title": "Ready for delivery", "done": true, "time": "Fri 9 May, 10:00 AM"},
+    {"id": "s5", "title": "Out for delivery", "done": true, "time": "Fri 9 May, 4:20 PM"}
+  ],
+  "driverName": "Ramesh K.",
+  "driverPhone": "+91 90000 12345",
+  "eta": "Arrives in ~18 min"
+}

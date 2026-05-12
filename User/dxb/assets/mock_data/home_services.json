@@ -1,0 +1,32 @@
+{
+  "services": [
+    {"id": "electrician", "title": "Electrician", "subtitle": "Wiring, fixtures, AC", "priceFrom": "From ₹299", "icon": "electrical_services", "rating": "4.9"},
+    {"id": "plumber", "title": "Plumber", "subtitle": "Leaks, taps, geysers", "priceFrom": "From ₹249", "icon": "plumbing", "rating": "4.8"},
+    {"id": "carpenter", "title": "Carpenter", "subtitle": "Furniture, doors", "priceFrom": "From ₹349", "icon": "carpenter", "rating": "4.7"},
+    {"id": "cleaning", "title": "Deep Cleaning", "subtitle": "Full home", "priceFrom": "From ₹999", "icon": "cleaning_services", "rating": "4.8"}
+  ],
+  "electricianDetail": {
+    "title": "Certified Electrician",
+    "description": "Safe repairs, installations, and inspections by verified pros.",
+    "includes": ["Site inspection", "Standard spare parts", "30-day service warranty"],
+    "hourly": "₹199/hr",
+    "visitFee": "₹49 visit fee (waived on booking)"
+  },
+  "bookSlots": [
+    {"id": "slot1", "label": "Today · 4–6 PM", "available": true},
+    {"id": "slot2", "label": "Tomorrow · 10 AM–12 PM", "available": true},
+    {"id": "slot3", "label": "Tomorrow · 2–4 PM", "available": false}
+  ],
+  "providerTracking": {
+    "name": "Vikram Nair",
+    "role": "Electrician",
+    "eta": "22 min",
+    "phone": "+91 98888 22110"
+  },
+  "completion": {
+    "title": "Service completed",
+    "subtitle": "Electrician visit · Order #HS-4412",
+    "amount": "₹598",
+    "invoiceUrl": "#"
+  }
+}

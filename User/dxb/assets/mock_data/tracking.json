@@ -1,0 +1,16 @@
+{
+  "orderType": "food",
+  "restaurant": "Biryani Palace",
+  "orderId": "FD-99201",
+  "status": "On the way",
+  "mapHint": "Live map preview",
+  "riderName": "Suresh",
+  "riderRating": 4.9,
+  "eta": "12 min",
+  "steps": [
+    {"label": "Order placed", "done": true},
+    {"label": "Preparing", "done": true},
+    {"label": "Picked up", "done": true},
+    {"label": "On the way", "done": true}
+  ]
+}

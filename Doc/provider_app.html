@@ -1,0 +1,4202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provider App – All Screens</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #4F46E5;
+  --primary-light: #6366F1;
+  --primary-dark: #3730A3;
+  --accent: #F59E0B;
+  --accent-light: #FCD34D;
+  --secondary: #9CAF88;
+  --secondary-light: #B8CCAA;
+  --bg: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --border: #E2E8F0;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 32px rgba(79,70,229,0.15);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #E0E7FF 0%, #F8FAFC 40%, #FEF3C7 100%);
+  min-height: 100vh;
+  color: var(--text-primary);
+}
+
+h1,h2,h3,h4,h5 { font-family: 'Sora', sans-serif; }
+
+/* ── LAYOUT ── */
+.app-wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.page-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+.page-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+}
+
+/* Screen Grid */
+.section-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 48px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
+  opacity: 0.25;
+}
+
+.screens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+/* Phone Frame */
+.phone {
+  width: 320px;
+  height: 680px;
+  background: var(--bg-card);
+  border-radius: 40px;
+  box-shadow: 0 0 0 10px #1E293B, 0 24px 64px rgba(0,0,0,0.3), inset 0 0 0 2px #334155;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 120px; height: 28px;
+  background: #1E293B;
+  border-radius: 0 0 20px 20px;
+  z-index: 100;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.screen::-webkit-scrollbar { display: none; }
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 36px 20px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Bottom Nav */
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0 16px;
+  z-index: 50;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  cursor: pointer;
+}
+.nav-item.active { color: var(--primary); }
+.nav-icon {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.nav-item.active .nav-icon {
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  width: 42px;
+}
+
+/* ── COMMON COMPONENTS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary { background: var(--primary); color: white; width: 100%; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-accent { background: var(--accent); color: #1A1A00; }
+.btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); width: 100%; }
+.btn-ghost { background: var(--bg); color: var(--text-secondary); }
+.btn-danger { background: var(--error); color: white; }
+.btn-success { background: var(--success); color: white; }
+.btn-sm { padding: 7px 14px; font-size: 12px; border-radius: 8px; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-primary { background: #EEF2FF; color: var(--primary); }
+.badge-success { background: #ECFDF5; color: var(--success); }
+.badge-warning { background: #FFFBEB; color: #D97706; }
+.badge-error { background: #FEF2F2; color: var(--error); }
+.badge-muted { background: var(--bg); color: var(--text-muted); }
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-field:focus { border-color: var(--primary); }
+.input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+.avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+}
+
+.screen-content { padding: 0 16px 20px; }
+
+/* ═══════════════════════════════════════════
+   SCREEN 1: SPLASH
+═══════════════════════════════════════════ */
+.splash {
+  background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 50%, #6366F1 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.splash::before {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+  top: -80px; right: -80px;
+}
+.splash::after {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  background: rgba(245,158,11,0.2);
+  border-radius: 50%;
+  bottom: 60px; left: -60px;
+}
+.splash-logo {
+  width: 80px; height: 80px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+.splash-brand {
+  text-align: center;
+  z-index: 1;
+}
+.splash-brand h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -1px;
+}
+.splash-brand p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 4px;
+}
+.splash-dots {
+  display: flex;
+  gap: 8px;
+  z-index: 1;
+}
+.splash-dot {
+  width: 8px; height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.3);
+}
+.splash-dot.active {
+  width: 24px;
+  background: var(--accent);
+}
+.splash-loader {
+  width: 160px; height: 3px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 1;
+}
+.splash-loader-fill {
+  height: 100%;
+  width: 65%;
+  background: linear-gradient(90deg, var(--accent) 0%, #FCD34D 100%);
+  border-radius: 3px;
+  animation: loadProgress 2s ease-in-out infinite;
+}
+@keyframes loadProgress {
+  0% { width: 20%; }
+  100% { width: 100%; }
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 2: WELCOME / ROLE SELECTION
+═══════════════════════════════════════════ */
+.welcome-screen {
+  background: var(--bg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.welcome-hero {
+  background: linear-gradient(160deg, var(--primary) 0%, var(--primary-light) 100%);
+  padding: 48px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  border-radius: 0 0 32px 32px;
+}
+.welcome-hero-icon {
+  width: 72px; height: 72px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+}
+.welcome-hero h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+}
+.welcome-hero p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+}
+.role-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 16px;
+  flex: 1;
+}
+.role-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.role-card:hover { border-color: var(--primary); box-shadow: var(--shadow-md); }
+.role-card.selected { border-color: var(--primary); background: #EEF2FF; }
+.role-icon {
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.role-info h3 { font-size: 15px; font-weight: 700; }
+.role-info p { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+/* ═══════════════════════════════════════════
+   SCREEN 3: LOGIN (OTP)
+═══════════════════════════════════════════ */
+.login-screen {
+  background: var(--bg);
+  height: 100%;
+  overflow-y: auto;
+}
+.login-header {
+  padding: 48px 24px 24px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+.login-header .back-btn {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.login-header h2 { font-size: 24px; font-weight: 800; }
+.login-header p { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+.login-body { padding: 24px 20px; display: flex; flex-direction: column; gap: 16px; }
+.tab-switcher {
+  display: flex;
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 4px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+.tab-btn.active {
+  background: white;
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+.otp-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.otp-box {
+  width: 48px; height: 56px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  color: var(--primary);
+  background: var(--bg);
+}
+.otp-box.filled { border-color: var(--primary); background: #EEF2FF; }
+.resend-text {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.resend-text span { color: var(--primary); font-weight: 600; cursor: pointer; }
+
+.phone-input-row {
+  display: flex;
+  gap: 10px;
+}
+.country-code {
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 4: REGISTRATION WIZARD
+═══════════════════════════════════════════ */
+.reg-header {
+  padding: 44px 20px 20px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+.progress-steps {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.step-dot {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+}
+.step-dot.done { background: var(--primary); }
+.step-dot.active { background: var(--accent); }
+.reg-step-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.reg-step-label span { color: var(--primary); font-weight: 700; }
+.reg-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+
+.upload-area {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  cursor: pointer;
+}
+.upload-area:hover { border-color: var(--primary); background: #EEF2FF; }
+.upload-icon { font-size: 32px; }
+.upload-area p { font-size: 13px; color: var(--text-secondary); text-align: center; }
+.upload-area span { font-size: 12px; color: var(--primary); font-weight: 600; }
+
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.chip.selected {
+  border-color: var(--primary);
+  background: #EEF2FF;
+  color: var(--primary);
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 5: PENDING / STATUS SCREENS
+═══════════════════════════════════════════ */
+.status-screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 24px;
+  text-align: center;
+  background: var(--bg);
+}
+.status-icon-wrap {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px;
+}
+.status-screen h2 { font-size: 22px; font-weight: 800; }
+.status-screen p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.status-steps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.status-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.status-step-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 6: DASHBOARD
+═══════════════════════════════════════════ */
+.dash-header {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  padding: 44px 20px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.dash-header::before {
+  content: '';
+  position: absolute;
+  width: 160px; height: 160px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  top: -40px; right: -40px;
+}
+.dash-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.dash-greeting { color: white; }
+.dash-greeting span { font-size: 12px; opacity: 0.75; }
+.dash-greeting h2 { font-size: 20px; font-weight: 700; margin-top: 2px; }
+.notif-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  position: relative;
+  cursor: pointer;
+}
+.notif-dot {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+}
+
+/* Revenue Card */
+.revenue-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.revenue-label { font-size: 11px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px; }
+.revenue-amount { font-size: 28px; font-weight: 800; font-family: 'Sora', sans-serif; color: white; margin: 4px 0; }
+.revenue-change {
+  font-size: 12px;
+  color: #86EFAC;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* KPI Row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0;
+}
+.kpi-card {
+  background: white;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.kpi-num { font-size: 20px; font-weight: 800; font-family: 'Sora', sans-serif; }
+.kpi-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+/* Mini Bar Chart */
+.mini-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 60px;
+  padding: 0 4px;
+}
+.mini-bar {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  background: rgba(255,255,255,0.3);
+  transition: height 0.3s;
+}
+.mini-bar.today { background: var(--accent); }
+
+/* Alert Card */
+.alert-card {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.alert-card.error { background: #FEF2F2; border-color: #FECACA; }
+.alert-icon { font-size: 18px; }
+.alert-info { flex: 1; }
+.alert-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+.alert-msg { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+/* Quick Actions */
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 4px 0;
+}
+.quick-action {
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.qa-icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.qa-label { font-size: 12px; font-weight: 700; color: var(--text-primary); }
+
+/* Order Mini Card */
+.order-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.order-mini-avatar {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.order-mini-info { flex: 1; }
+.order-mini-title { font-size: 13px; font-weight: 700; }
+.order-mini-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.order-mini-right { text-align: right; }
+.order-mini-amount { font-size: 14px; font-weight: 700; font-family: 'Sora', sans-serif; }
+
+/* Earnings Chart */
+.earnings-chart {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  margin: 4px 0;
+}
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.chart-title { font-size: 14px; font-weight: 700; }
+.chart-period {
+  font-size: 11px;
+  color: var(--primary);
+  background: #EEF2FF;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 90px;
+}
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.bar-fill {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+  transition: height 0.4s;
+}
+.bar-col.accent .bar-fill { background: linear-gradient(180deg, var(--accent) 0%, #FCD34D 100%); }
+.bar-label { font-size: 9px; color: var(--text-muted); }
+
+/* SLA Alert */
+.sla-card {
+  background: linear-gradient(135deg, #FEF2F2 0%, #FFF 100%);
+  border: 1px solid #FECACA;
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sla-icon { font-size: 24px; }
+.sla-info { flex: 1; }
+.sla-title { font-size: 13px; font-weight: 700; color: var(--error); }
+.sla-sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+.sla-timer {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'Sora', sans-serif;
+  color: var(--error);
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 7: ORDERS LIST
+═══════════════════════════════════════════ */
+.orders-header {
+  padding: 44px 20px 16px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+.orders-header h2 { font-size: 22px; font-weight: 800; }
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-top: 14px;
+  border: 1.5px solid var(--border);
+}
+.search-icon { font-size: 16px; color: var(--text-muted); }
+.search-bar input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-primary);
+  flex: 1;
+  outline: none;
+}
+.filter-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.filter-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+}
+.filter-pill.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.orders-list { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.order-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.order-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.order-id { font-size: 12px; font-weight: 700; color: var(--text-muted); }
+.order-type-badge {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  background: #EEF2FF;
+  color: var(--primary);
+}
+.order-customer { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+.order-desc { font-size: 12px; color: var(--text-secondary); }
+.order-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.order-amount { font-size: 16px; font-weight: 800; font-family: 'Sora', sans-serif; color: var(--primary); }
+.order-actions { display: flex; gap: 8px; }
+
+/* ═══════════════════════════════════════════
+   SCREEN 8: ORDER DETAIL
+═══════════════════════════════════════════ */
+.order-detail-header {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  padding: 44px 20px 24px;
+}
+.back-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.back-circle {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+.back-row span { color: white; font-weight: 600; font-size: 16px; }
+.order-detail-id {
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 4px;
+}
+.order-detail-title { font-size: 20px; font-weight: 800; color: white; margin-bottom: 8px; }
+.status-timeline {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin: 14px 0;
+}
+.timeline-step { display: flex; flex-direction: column; align-items: center; flex: 1; }
+.timeline-dot {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: 2px solid rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  color: white;
+}
+.timeline-dot.done { background: var(--accent); border-color: var(--accent); }
+.timeline-dot.active { background: white; border-color: white; color: var(--primary); }
+.timeline-line {
+  height: 2px;
+  flex: 1;
+  background: rgba(255,255,255,0.25);
+  margin: 0 -2px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+.timeline-line.done { background: var(--accent); }
+.timeline-label { font-size: 9px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+.customer-masked {
+  background: white;
+  border-radius: var(--radius);
+  padding: 14px;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.masked-avatar {
+  width: 48px; height: 48px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.masked-info { flex: 1; }
+.masked-name { font-size: 15px; font-weight: 700; }
+.masked-phone { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+.masked-actions { display: flex; gap: 8px; }
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.items-list { display: flex; flex-direction: column; gap: 8px; }
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: var(--bg);
+  border-radius: 10px;
+}
+.item-name { font-size: 13px; font-weight: 600; }
+.item-qty { font-size: 12px; color: var(--text-muted); }
+.item-price { font-size: 14px; font-weight: 700; font-family: 'Sora', sans-serif; }
+
+.proof-upload {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  cursor: pointer;
+  text-align: center;
+}
+.proof-icon { font-size: 28px; }
+.proof-upload p { font-size: 12px; color: var(--text-secondary); }
+
+/* Status Update Panel */
+.status-panel {
+  background: white;
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 20px;
+}
+.panel-handle {
+  width: 40px; height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 0 auto 16px;
+}
+.status-options { display: flex; flex-direction: column; gap: 8px; }
+.status-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.status-option.selected { border-color: var(--primary); background: #EEF2FF; }
+.status-option-icon { font-size: 20px; }
+.status-option-label { font-size: 14px; font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   CATALOG SCREENS
+═══════════════════════════════════════════ */
+.catalog-header {
+  padding: 44px 20px 16px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+.catalog-header h2 { font-size: 22px; font-weight: 800; }
+.vertical-switcher {
+  display: flex;
+  gap: 8px;
+  padding: 14px 16px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.vertical-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  min-width: 60px;
+  background: var(--bg);
+  transition: all 0.2s;
+}
+.vertical-pill.active { border-color: var(--primary); background: #EEF2FF; }
+.vertical-pill-icon { font-size: 22px; }
+.vertical-pill-label { font-size: 10px; font-weight: 700; color: var(--text-muted); }
+.vertical-pill.active .vertical-pill-label { color: var(--primary); }
+
+.catalog-content { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+.category-section { margin-bottom: 4px; }
+.category-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.category-name { font-size: 15px; font-weight: 700; }
+.add-link { font-size: 12px; color: var(--primary); font-weight: 600; cursor: pointer; }
+
+.menu-item-card {
+  background: white;
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.menu-item-img {
+  width: 56px; height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.menu-item-info { flex: 1; }
+.menu-item-name { font-size: 13px; font-weight: 700; }
+.menu-item-desc { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.menu-item-price { font-size: 14px; font-weight: 800; font-family: 'Sora', sans-serif; color: var(--primary); margin-top: 4px; }
+.menu-item-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+
+/* Toggle */
+.toggle {
+  width: 40px; height: 22px;
+  background: var(--success);
+  border-radius: 11px;
+  position: relative;
+  cursor: pointer;
+}
+.toggle::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  background: white;
+  border-radius: 50%;
+  top: 2px; right: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.toggle.off { background: var(--border); }
+.toggle.off::after { right: auto; left: 2px; }
+
+/* Fleet / Room cards */
+.fleet-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+.fleet-img {
+  height: 80px;
+  background: linear-gradient(135deg, #DBEAFE 0%, #EEF2FF 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+.fleet-info { padding: 12px; }
+.fleet-name { font-size: 14px; font-weight: 700; }
+.fleet-details { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.fleet-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* ═══════════════════════════════════════════
+   CUSTOMER SCREENS
+═══════════════════════════════════════════ */
+.customer-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+.cust-avatar {
+  width: 48px; height: 48px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  flex-shrink: 0;
+}
+.cust-info { flex: 1; }
+.cust-name { font-size: 14px; font-weight: 700; }
+.cust-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.cust-tags { display: flex; gap: 4px; margin-top: 6px; }
+.cust-tag {
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+/* Customer Detail */
+.cust-detail-hero {
+  background: linear-gradient(135deg, var(--secondary) 0%, #7A9A6A 100%);
+  padding: 44px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.cust-detail-avatar {
+  width: 72px; height: 72px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  font-weight: 800;
+  font-family: 'Sora', sans-serif;
+  color: white;
+  border: 3px solid rgba(255,255,255,0.4);
+}
+.cust-detail-name { font-size: 20px; font-weight: 800; color: white; }
+.cust-detail-since { font-size: 12px; color: rgba(255,255,255,0.75); }
+.cust-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: rgba(255,255,255,0.15);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 8px;
+}
+.cust-stat { padding: 12px; text-align: center; }
+.cust-stat-num { font-size: 18px; font-weight: 800; font-family: 'Sora', sans-serif; color: white; }
+.cust-stat-label { font-size: 10px; color: rgba(255,255,255,0.7); }
+
+.history-item {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow-sm);
+}
+.history-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: #EEF2FF;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.history-info { flex: 1; }
+.history-name { font-size: 13px; font-weight: 600; }
+.history-date { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.history-amount { font-size: 14px; font-weight: 800; font-family: 'Sora', sans-serif; color: var(--primary); }
+
+/* Notes */
+.note-card {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+.note-meta { font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
+.note-text { font-size: 13px; color: var(--text-primary); }
+
+/* ═══════════════════════════════════════════
+   INBOX / MESSAGES
+═══════════════════════════════════════════ */
+.inbox-header {
+  padding: 44px 20px 16px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+.inbox-header h2 { font-size: 22px; font-weight: 800; }
+.inbox-header p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+.msg-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+}
+.msg-item.unread { background: #F8F7FF; }
+.msg-avatar {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  flex-shrink: 0;
+}
+.msg-body { flex: 1; }
+.msg-header { display: flex; justify-content: space-between; align-items: center; }
+.msg-name { font-size: 14px; font-weight: 700; }
+.msg-time { font-size: 11px; color: var(--text-muted); }
+.msg-preview { font-size: 12px; color: var(--text-secondary); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+.msg-unread-dot {
+  width: 8px; height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* Account Screen */
+.account-hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  padding: 44px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.account-avatar {
+  width: 80px; height: 80px;
+  border-radius: 26px;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+  border: 3px solid rgba(255,255,255,0.4);
+}
+.account-name { font-size: 20px; font-weight: 800; color: white; }
+.account-status {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.account-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 16px 0;
+}
+.account-stat-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.account-stat-num { font-size: 22px; font-weight: 800; font-family: 'Sora', sans-serif; color: var(--primary); }
+.account-stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.menu-group { padding: 16px; }
+.menu-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+.menu-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.menu-row-icon {
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.menu-row-label { flex: 1; font-size: 14px; font-weight: 600; }
+.menu-row-chevron { font-size: 16px; color: var(--text-muted); }
+
+/* Availability Window */
+.avail-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow-sm);
+}
+.avail-day { font-size: 13px; font-weight: 700; min-width: 30px; }
+.avail-time { font-size: 12px; color: var(--text-secondary); flex: 1; }
+
+/* Calendar */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.cal-day {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.cal-day.header { color: var(--text-muted); font-size: 10px; font-weight: 700; }
+.cal-day.available { background: #ECFDF5; color: var(--success); font-weight: 700; }
+.cal-day.booked { background: #EEF2FF; color: var(--primary); font-weight: 700; }
+.cal-day.blocked { background: var(--bg); color: var(--text-muted); }
+.cal-day.today { background: var(--primary); color: white; font-weight: 800; }
+
+/* Laundry Weight Pricing */
+.weight-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow-sm);
+}
+.weight-range { font-size: 13px; font-weight: 700; flex: 1; }
+.weight-price { font-size: 14px; font-weight: 800; font-family: 'Sora', sans-serif; color: var(--primary); }
+
+/* Room Type */
+.room-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.room-img {
+  height: 70px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+}
+.room-info { padding: 12px; }
+.room-name { font-size: 14px; font-weight: 700; }
+.room-amenities { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.room-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+/* SKU / Marketplace */
+.sku-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.sku-img {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: #EEF2FF;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.sku-info { flex: 1; }
+.sku-name { font-size: 13px; font-weight: 700; }
+.sku-code { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+.sku-stock-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.stock-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+}
+.stock-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--success);
+}
+.stock-fill.low { background: var(--error); }
+.stock-num { font-size: 11px; font-weight: 700; color: var(--text-secondary); }
+
+/* Service Package */
+.service-pkg {
+  background: white;
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+.pkg-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.pkg-icon {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.pkg-name { font-size: 15px; font-weight: 700; }
+.pkg-desc { font-size: 12px; color: var(--text-muted); }
+.pkg-footer { display: flex; justify-content: space-between; align-items: center; }
+.pkg-price { font-size: 16px; font-weight: 800; font-family: 'Sora', sans-serif; color: var(--primary); }
+.pkg-duration { font-size: 12px; color: var(--text-muted); background: var(--bg); padding: 4px 10px; border-radius: 20px; }
+
+/* Suspended / Rejected */
+.suspended-screen {
+  height: 100%;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+/* Floating Action Button */
+.fab {
+  position: sticky;
+  bottom: 70px;
+  right: 16px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 4px;
+}
+.fab-btn {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: 0 6px 20px rgba(79,70,229,0.35);
+  cursor: pointer;
+}
+
+/* Section header within screen */
+.section-h {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 14px 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.see-all { font-size: 12px; color: var(--primary); font-weight: 600; cursor: pointer; }
+
+/* Pill group */
+.pill-group { display: flex; gap: 6px; margin: 8px 0; }
+
+/* Screen label */
+.screen-name-label {
+  background: var(--primary);
+  color: white;
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 0 0 12px 12px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+</style>
+</head>
+<body>
+<div class="app-wrapper">
+  <h1 class="page-title">🚀 Provider App — All Screens</h1>
+  <p class="page-subtitle">Complete mobile UI · Indigo × Amber × Sage · Sora + DM Sans</p>
+
+  <!-- ═══════════════ ONBOARDING ═══════════════ -->
+  <div class="section-label">🔐 Authentication & Onboarding</div>
+  <div class="screens-grid">
+
+    <!-- SPLASH -->
+    <div>
+      <div class="screen-name-label">1 · Splash Screen</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen">
+          <div class="splash">
+            <div class="splash-logo">🛍️</div>
+            <div class="splash-brand">
+              <h1>Provify</h1>
+              <p>Your business, supercharged</p>
+            </div>
+            <div class="mini-chart" style="height:40px;gap:4px;">
+              <div class="mini-bar" style="height:50%;background:rgba(255,255,255,0.15)"></div>
+              <div class="mini-bar" style="height:70%;background:rgba(255,255,255,0.15)"></div>
+              <div class="mini-bar" style="height:40%;background:rgba(255,255,255,0.15)"></div>
+              <div class="mini-bar" style="height:90%;background:rgba(245,158,11,0.7)"></div>
+              <div class="mini-bar" style="height:60%;background:rgba(255,255,255,0.15)"></div>
+            </div>
+            <div class="splash-loader"><div class="splash-loader-fill"></div></div>
+            <div class="splash-dots">
+              <div class="splash-dot active"></div>
+              <div class="splash-dot"></div>
+              <div class="splash-dot"></div>
+            </div>
+            <p style="color:rgba(255,255,255,0.5);font-size:11px;">v2.4.1</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WELCOME ROLE SELECTION -->
+    <div>
+      <div class="screen-name-label">2 · Welcome & Role Selection</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="welcome-hero">
+            <div class="welcome-hero-icon">👋</div>
+            <h2>Welcome to Provify</h2>
+            <p>Tell us who you are to get started</p>
+          </div>
+          <div class="role-cards">
+            <div style="font-size:12px;font-weight:700;color:var(--text-muted);padding-left:4px;margin-bottom:4px;">SELECT YOUR ROLE</div>
+            <div class="role-card selected">
+              <div class="role-icon" style="background:#EEF2FF;">🏪</div>
+              <div class="role-info">
+                <h3>Service Provider</h3>
+                <p>Manage orders, catalog & earnings</p>
+              </div>
+              <span style="color:var(--primary);font-size:20px;">✓</span>
+            </div>
+            <div class="role-card">
+              <div class="role-icon" style="background:#FEF3C7;">🛵</div>
+              <div class="role-info">
+                <h3>Delivery Partner</h3>
+                <p>Pick up & deliver orders</p>
+              </div>
+            </div>
+            <div class="role-card">
+              <div class="role-icon" style="background:#ECFDF5;">👤</div>
+              <div class="role-info">
+                <h3>Customer</h3>
+                <p>Browse & order services</p>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:8px;">Continue as Provider →</button>
+            <p style="text-align:center;font-size:12px;color:var(--text-muted);">Already have an account? <span style="color:var(--primary);font-weight:700;">Sign in</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGIN OTP -->
+    <div>
+      <div class="screen-name-label">3 · Login — OTP / Email</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="login-header">
+            <div class="back-btn">←</div>
+            <h2>Sign In</h2>
+            <p>Enter your credentials to access your account</p>
+          </div>
+          <div class="login-body">
+            <div class="tab-switcher">
+              <div class="tab-btn active">📱 Phone OTP</div>
+              <div class="tab-btn">✉️ Email</div>
+            </div>
+            <div>
+              <label class="input-label">Phone Number</label>
+              <div class="phone-input-row">
+                <div class="country-code">🇮🇳 +91</div>
+                <input class="input-field" value="98765 43210" style="flex:1" readonly>
+              </div>
+            </div>
+            <div>
+              <label class="input-label">Enter OTP</label>
+              <p style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">Sent to 98765 ••••••</p>
+              <div class="otp-row">
+                <div class="otp-box filled">4</div>
+                <div class="otp-box filled">8</div>
+                <div class="otp-box filled">2</div>
+                <div class="otp-box active" style="border-color:var(--primary);animation:pulse 1s infinite;">_</div>
+                <div class="otp-box"></div>
+                <div class="otp-box"></div>
+              </div>
+            </div>
+            <p class="resend-text">Didn't receive OTP? <span>Resend (28s)</span></p>
+            <button class="btn btn-primary">Verify & Continue</button>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="divider" style="flex:1;margin:0"></div>
+              <span style="font-size:12px;color:var(--text-muted)">OR</span>
+              <div class="divider" style="flex:1;margin:0"></div>
+            </div>
+            <button class="btn btn-outline">🔑 Continue with Email</button>
+            <p style="text-align:center;font-size:11px;color:var(--text-muted)">By continuing you agree to our <span style="color:var(--primary)">Terms</span> & <span style="color:var(--primary)">Privacy Policy</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTRATION WIZARD -->
+    <div>
+      <div class="screen-name-label">4 · Registration Wizard — Business Info</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="reg-header">
+            <div class="progress-steps">
+              <div class="step-dot done"></div>
+              <div class="step-dot active"></div>
+              <div class="step-dot"></div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="reg-step-label">Step <span>2</span> of 4 · Business Details</div>
+            <h2 style="font-size:20px;font-weight:800;">Tell us about your business</h2>
+          </div>
+          <div class="reg-body">
+            <div>
+              <label class="input-label">Business Name *</label>
+              <input class="input-field" value="Spice Garden Restaurant">
+            </div>
+            <div>
+              <label class="input-label">Business Category *</label>
+              <div class="category-chips">
+                <div class="chip selected">🍔 Food</div>
+                <div class="chip">👕 Laundry</div>
+                <div class="chip">🚗 Car Rental</div>
+                <div class="chip">🏨 Hotel</div>
+                <div class="chip">🛒 Market</div>
+                <div class="chip">🔧 Services</div>
+              </div>
+            </div>
+            <div>
+              <label class="input-label">Business Address *</label>
+              <input class="input-field" value="45 Main Street, Koramangala">
+            </div>
+            <div>
+              <label class="input-label">GSTIN (Optional)</label>
+              <input class="input-field" value="29AABCU9603R1ZX">
+            </div>
+            <button class="btn btn-primary">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTRATION STEP 3: DOCUMENT UPLOAD -->
+    <div>
+      <div class="screen-name-label">5 · Registration — Document Upload</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="reg-header">
+            <div class="progress-steps">
+              <div class="step-dot done"></div>
+              <div class="step-dot done"></div>
+              <div class="step-dot active"></div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="reg-step-label">Step <span>3</span> of 4 · Verification Documents</div>
+            <h2 style="font-size:20px;font-weight:800;">Upload your documents</h2>
+          </div>
+          <div class="reg-body">
+            <div>
+              <label class="input-label">Business License / FSSAI *</label>
+              <div class="upload-area" style="border-color:var(--success);background:#ECFDF5;">
+                <div class="upload-icon">✅</div>
+                <p style="color:var(--success);font-weight:600;">fssai_license.pdf uploaded</p>
+                <span>Tap to replace</span>
+              </div>
+            </div>
+            <div>
+              <label class="input-label">Owner Aadhaar / Passport *</label>
+              <div class="upload-area">
+                <div class="upload-icon">📄</div>
+                <p>Upload your ID proof</p>
+                <span>JPG, PNG, PDF · Max 5MB</span>
+              </div>
+            </div>
+            <div>
+              <label class="input-label">Store / Business Photo</label>
+              <div class="upload-area">
+                <div class="upload-icon">📷</div>
+                <p>Add a photo of your business</p>
+                <span>Helps build customer trust</span>
+              </div>
+            </div>
+            <button class="btn btn-primary">Next → Review & Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PENDING APPROVAL -->
+    <div>
+      <div class="screen-name-label">6 · Pending Approval</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen">
+          <div class="status-screen">
+            <div class="status-icon-wrap" style="background:#EEF2FF;">⏳</div>
+            <h2>Application Under Review</h2>
+            <p>Your documents are being verified by our team. This usually takes 24–48 hours.</p>
+            <div class="status-steps">
+              <div class="status-step">
+                <div class="status-step-icon" style="background:#ECFDF5;color:var(--success);">✓</div>
+                <span>Documents Submitted</span>
+              </div>
+              <div class="status-step">
+                <div class="status-step-icon" style="background:#EEF2FF;color:var(--primary);">🔍</div>
+                <span style="font-weight:700;color:var(--primary);">Verification in Progress</span>
+              </div>
+              <div class="status-step">
+                <div class="status-step-icon" style="background:var(--bg);color:var(--text-muted);">✉️</div>
+                <span style="color:var(--text-muted);">Approval Notification</span>
+              </div>
+              <div class="status-step">
+                <div class="status-step-icon" style="background:var(--bg);color:var(--text-muted);">🚀</div>
+                <span style="color:var(--text-muted);">Go Live!</span>
+              </div>
+            </div>
+            <button class="btn btn-outline">📞 Contact Support</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REJECTED -->
+    <div>
+      <div class="screen-name-label">7 · Rejected Account</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen">
+          <div class="suspended-screen">
+            <div class="status-icon-wrap" style="background:#FEF2F2;">❌</div>
+            <h2 style="color:var(--error);">Application Rejected</h2>
+            <p>Unfortunately your application was not approved. Here's what went wrong:</p>
+            <div style="width:100%;background:#FEF2F2;border-radius:var(--radius);padding:14px;border:1px solid #FECACA;text-align:left;">
+              <p style="font-size:12px;font-weight:700;color:var(--error);margin-bottom:8px;">Rejection Reasons:</p>
+              <ul style="padding-left:16px;display:flex;flex-direction:column;gap:6px;">
+                <li style="font-size:12px;color:var(--text-secondary);">Document image quality is too low</li>
+                <li style="font-size:12px;color:var(--text-secondary);">Business license expired (Dec 2023)</li>
+              </ul>
+            </div>
+            <button class="btn btn-primary">📤 Re-upload Documents</button>
+            <button class="btn btn-outline">📞 Appeal Decision</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUSPENDED -->
+    <div>
+      <div class="screen-name-label">8 · Suspended Account</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen">
+          <div class="suspended-screen">
+            <div class="status-icon-wrap" style="background:#FEF3C7;">⚠️</div>
+            <h2 style="color:#D97706;">Account Suspended</h2>
+            <p>Your account has been temporarily suspended due to policy violations or unresolved issues.</p>
+            <div style="width:100%;background:#FFFBEB;border-radius:var(--radius);padding:14px;border:1px solid #FDE68A;text-align:left;">
+              <p style="font-size:12px;font-weight:700;color:#D97706;margin-bottom:6px;">Suspension Details</p>
+              <p style="font-size:12px;color:var(--text-secondary);">Reason: Multiple SLA violations (5 in 30 days)</p>
+              <p style="font-size:12px;color:var(--text-secondary);margin-top:4px;">Suspended on: Nov 15, 2025</p>
+              <p style="font-size:12px;color:var(--text-secondary);margin-top:4px;">Review on: Dec 15, 2025</p>
+            </div>
+            <button class="btn btn-primary">📋 View Guidelines</button>
+            <button class="btn btn-outline">🎧 Talk to Support</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ DASHBOARD ═══════════════ -->
+  <div class="section-label">🏠 Dashboard (Home Screen)</div>
+  <div class="screens-grid">
+
+    <!-- MAIN DASHBOARD -->
+    <div>
+      <div class="screen-name-label">9 · Dashboard — Home</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <!-- Header -->
+          <div class="dash-header">
+            <div class="dash-header-row">
+              <div class="dash-greeting">
+                <span>Good Morning ☀️</span>
+                <h2>Ahmed's Spice Garden</h2>
+              </div>
+              <div class="notif-btn">🔔<div class="notif-dot"></div></div>
+            </div>
+            <!-- Revenue Card -->
+            <div class="revenue-card">
+              <div class="revenue-label">Today's Revenue</div>
+              <div class="revenue-amount">₹12,840</div>
+              <div class="revenue-change">↑ 18.4% vs yesterday</div>
+              <div class="mini-chart" style="margin-top:12px;">
+                <div class="mini-bar" style="height:40%"></div>
+                <div class="mini-bar" style="height:65%"></div>
+                <div class="mini-bar" style="height:50%"></div>
+                <div class="mini-bar" style="height:80%"></div>
+                <div class="mini-bar" style="height:60%"></div>
+                <div class="mini-bar today" style="height:90%"></div>
+                <div class="mini-bar" style="height:45%;opacity:0.4"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI Row -->
+          <div style="padding:16px 16px 0">
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-num" style="color:var(--primary);">28</div>
+                <div class="kpi-label">Today's Orders</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-num" style="color:var(--success);">96%</div>
+                <div class="kpi-label">Completion</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-num" style="color:var(--accent);">4.8⭐</div>
+                <div class="kpi-label">Rating</div>
+              </div>
+            </div>
+
+            <!-- SLA Alert -->
+            <div class="sla-card" style="margin-top:12px;">
+              <div class="sla-icon">🚨</div>
+              <div class="sla-info">
+                <div class="sla-title">SLA Risk — Order #4821</div>
+                <div class="sla-sub">Delivery due in 12 mins</div>
+              </div>
+              <div class="sla-timer">12:04</div>
+            </div>
+
+            <!-- Alerts -->
+            <div class="section-h" style="margin-top:14px;">
+              Alerts & Tasks <span class="see-all" style="background:#EEF2FF;padding:3px 10px;border-radius:20px;font-size:11px;">3 pending</span>
+            </div>
+            <div class="alert-card" style="margin-bottom:8px;">
+              <div class="alert-icon">⚡</div>
+              <div class="alert-info">
+                <div class="alert-title">Low Stock Alert</div>
+                <div class="alert-msg">Paneer Tikka down to 3 portions</div>
+              </div>
+              <span style="font-size:18px;cursor:pointer;">›</span>
+            </div>
+            <div class="alert-card error" style="margin-bottom:8px;">
+              <div class="alert-icon">❗</div>
+              <div class="alert-info">
+                <div class="alert-title">Order Rejected</div>
+                <div class="alert-msg">Customer Ahmed cancelled #4820</div>
+              </div>
+              <span style="font-size:18px;cursor:pointer;">›</span>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section-h">Quick Actions</div>
+            <div class="quick-actions">
+              <div class="quick-action">
+                <div class="qa-icon" style="background:#EEF2FF;">➕</div>
+                <div class="qa-label">Add Item</div>
+              </div>
+              <div class="quick-action">
+                <div class="qa-icon" style="background:#FEF3C7;">📦</div>
+                <div class="qa-label">View Orders</div>
+              </div>
+              <div class="quick-action">
+                <div class="qa-icon" style="background:#ECFDF5;">💰</div>
+                <div class="qa-label">Earnings</div>
+              </div>
+              <div class="quick-action">
+                <div class="qa-icon" style="background:#F0FDF4;">📊</div>
+                <div class="qa-label">Reports</div>
+              </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="section-h">Recent Orders <span class="see-all">See all</span></div>
+            <div class="order-mini">
+              <div class="order-mini-avatar">🍛</div>
+              <div class="order-mini-info">
+                <div class="order-mini-title">Butter Chicken × 2</div>
+                <div class="order-mini-sub">Order #4821 · 2 mins ago</div>
+              </div>
+              <div class="order-mini-right">
+                <div class="order-mini-amount">₹480</div>
+                <div class="badge badge-warning" style="margin-top:4px;">Preparing</div>
+              </div>
+            </div>
+            <div class="order-mini">
+              <div class="order-mini-avatar">🥗</div>
+              <div class="order-mini-info">
+                <div class="order-mini-title">Veg Thali × 1</div>
+                <div class="order-mini-sub">Order #4820 · 15 mins ago</div>
+              </div>
+              <div class="order-mini-right">
+                <div class="order-mini-amount">₹220</div>
+                <div class="badge badge-success" style="margin-top:4px;">Delivered</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Earnings Chart -->
+          <div style="padding:0 16px 16px;">
+            <div class="earnings-chart">
+              <div class="chart-header">
+                <div class="chart-title">Weekly Earnings</div>
+                <div class="chart-period">This Week</div>
+              </div>
+              <div class="bar-chart">
+                <div class="bar-col"><div class="bar-fill" style="height:45%"></div><div class="bar-label">M</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:65%"></div><div class="bar-label">T</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:55%"></div><div class="bar-label">W</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:80%"></div><div class="bar-label">T</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:70%"></div><div class="bar-label">F</div></div>
+                <div class="bar-col accent"><div class="bar-fill" style="height:95%"></div><div class="bar-label">S</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:40%;opacity:0.4"></div><div class="bar-label">S</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-nav">
+            <div class="nav-item active"><div class="nav-icon">🏠</div><span>Home</span></div>
+            <div class="nav-item"><div class="nav-icon">📦</div><span>Orders</span></div>
+            <div class="nav-item"><div class="nav-icon">🗂️</div><span>Catalog</span></div>
+            <div class="nav-item"><div class="nav-icon">💬</div><span>Inbox</span></div>
+            <div class="nav-item"><div class="nav-icon">👤</div><span>Account</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ ORDERS ═══════════════ -->
+  <div class="section-label">📦 Orders Management</div>
+  <div class="screens-grid">
+
+    <!-- ORDERS LIST -->
+    <div>
+      <div class="screen-name-label">10 · Orders List</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="orders-header">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2>Orders</h2>
+              <span class="badge badge-primary" style="font-size:12px;padding:5px 12px;">28 Today</span>
+            </div>
+            <div class="search-bar">
+              <div class="search-icon">🔍</div>
+              <input placeholder="Search order ID, customer...">
+            </div>
+          </div>
+          <div class="filter-row">
+            <div class="filter-pill active">All (28)</div>
+            <div class="filter-pill">New (5)</div>
+            <div class="filter-pill">Preparing (8)</div>
+            <div class="filter-pill">Ready (4)</div>
+            <div class="filter-pill">Delivered (11)</div>
+          </div>
+          <div class="orders-list">
+            <!-- Order 1 - New -->
+            <div class="order-card" style="border-left:4px solid var(--primary)">
+              <div class="order-card-header">
+                <div>
+                  <div class="order-id">#4825 · Just now</div>
+                  <div class="order-customer">Riya Mehta</div>
+                  <div class="order-desc">Biryani × 2, Raita × 1</div>
+                </div>
+                <div class="badge badge-primary">🆕 New</div>
+              </div>
+              <div class="order-card-footer">
+                <div class="order-amount">₹640</div>
+                <div class="order-actions">
+                  <button class="btn btn-danger btn-sm">✕ Reject</button>
+                  <button class="btn btn-success btn-sm">✓ Accept</button>
+                </div>
+              </div>
+            </div>
+            <!-- Order 2 - Preparing -->
+            <div class="order-card" style="border-left:4px solid var(--accent)">
+              <div class="order-card-header">
+                <div>
+                  <div class="order-id">#4821 · 12 mins ago</div>
+                  <div class="order-customer">Karan Shah ••••</div>
+                  <div class="order-desc">Butter Chicken × 2, Naan × 4</div>
+                </div>
+                <div class="badge badge-warning">⏳ Preparing</div>
+              </div>
+              <div class="order-card-footer">
+                <div class="order-amount">₹580</div>
+                <button class="btn btn-accent btn-sm">Mark Ready</button>
+              </div>
+            </div>
+            <!-- Order 3 - Ready -->
+            <div class="order-card" style="border-left:4px solid var(--success)">
+              <div class="order-card-header">
+                <div>
+                  <div class="order-id">#4818 · 28 mins ago</div>
+                  <div class="order-customer">Priya ••••</div>
+                  <div class="order-desc">Veg Thali × 1</div>
+                </div>
+                <div class="badge badge-success">✅ Ready</div>
+              </div>
+              <div class="order-card-footer">
+                <div class="order-amount">₹220</div>
+                <button class="btn btn-primary btn-sm">Assign Rider</button>
+              </div>
+            </div>
+            <!-- Order 4 - Delivered -->
+            <div class="order-card">
+              <div class="order-card-header">
+                <div>
+                  <div class="order-id">#4815 · 1h ago</div>
+                  <div class="order-customer">Amit ••••</div>
+                  <div class="order-desc">Tandoori Platter × 1</div>
+                </div>
+                <div class="badge badge-muted">📦 Delivered</div>
+              </div>
+              <div class="order-card-footer">
+                <div class="order-amount">₹850</div>
+                <button class="btn btn-ghost btn-sm">View Details</button>
+              </div>
+            </div>
+          </div>
+          <div class="fab"><div class="fab-btn">🔔</div></div>
+          <div class="bottom-nav">
+            <div class="nav-item"><div class="nav-icon">🏠</div><span>Home</span></div>
+            <div class="nav-item active"><div class="nav-icon">📦</div><span>Orders</span></div>
+            <div class="nav-item"><div class="nav-icon">🗂️</div><span>Catalog</span></div>
+            <div class="nav-item"><div class="nav-icon">💬</div><span>Inbox</span></div>
+            <div class="nav-item"><div class="nav-icon">👤</div><span>Account</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER DETAIL -->
+    <div>
+      <div class="screen-name-label">11 · Order Detail</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="order-detail-header">
+            <div class="back-row">
+              <div class="back-circle">←</div>
+              <span>Order Details</span>
+            </div>
+            <div class="order-detail-id">Order #4821 · Food · Nov 14, 2025</div>
+            <div class="order-detail-title">Butter Chicken × 2, Naan × 4</div>
+            <div class="badge badge-warning" style="background:rgba(255,255,255,0.2);color:white;">⏳ Preparing</div>
+            <!-- Status Timeline -->
+            <div style="display:flex;align-items:center;margin-top:14px;">
+              <div class="timeline-step">
+                <div class="timeline-dot done">✓</div>
+                <div class="timeline-label">Placed</div>
+              </div>
+              <div class="timeline-line done"></div>
+              <div class="timeline-step">
+                <div class="timeline-dot done">✓</div>
+                <div class="timeline-label">Accepted</div>
+              </div>
+              <div class="timeline-line done"></div>
+              <div class="timeline-step">
+                <div class="timeline-dot active">•</div>
+                <div class="timeline-label">Preparing</div>
+              </div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step">
+                <div class="timeline-dot">🛵</div>
+                <div class="timeline-label">Picked</div>
+              </div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step">
+                <div class="timeline-dot">✓</div>
+                <div class="timeline-label">Done</div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-content">
+            <!-- Customer Info (masked) -->
+            <div class="section-h">Customer</div>
+            <div class="customer-masked">
+              <div class="masked-avatar">👤</div>
+              <div class="masked-info">
+                <div class="masked-name">Karan S••••</div>
+                <div class="masked-phone">+91 98••• •••10</div>
+              </div>
+              <div class="masked-actions">
+                <div class="icon-btn" style="background:#EEF2FF;color:var(--primary);">📞</div>
+                <div class="icon-btn" style="background:#EEF2FF;color:var(--primary);">💬</div>
+              </div>
+            </div>
+            <!-- Items -->
+            <div class="section-h">Items</div>
+            <div class="card" style="padding:12px;">
+              <div class="items-list">
+                <div class="item-row">
+                  <div><div class="item-name">Butter Chicken</div><div class="item-qty">× 2</div></div>
+                  <div class="item-price">₹380</div>
+                </div>
+                <div class="item-row">
+                  <div><div class="item-name">Garlic Naan</div><div class="item-qty">× 4</div></div>
+                  <div class="item-price">₹120</div>
+                </div>
+                <div class="divider"></div>
+                <div class="item-row">
+                  <div><div class="item-name" style="font-weight:800;">Total</div></div>
+                  <div class="item-price" style="font-size:16px;color:var(--primary);">₹580</div>
+                </div>
+              </div>
+            </div>
+            <!-- Delay Notice -->
+            <div class="alert-card" style="margin-top:12px;">
+              <div class="alert-icon">⏰</div>
+              <div class="alert-info">
+                <div class="alert-title">Expected: 2:45 PM</div>
+                <div class="alert-msg">Send delay notification to customer?</div>
+              </div>
+              <button class="btn btn-sm" style="background:#EEF2FF;color:var(--primary);">Notify</button>
+            </div>
+            <!-- Actions -->
+            <div style="display:flex;gap:8px;margin-top:14px;">
+              <button class="btn btn-primary" style="flex:1;">Mark Ready ✓</button>
+              <button class="btn btn-outline" style="width:auto;padding:12px;">🚨</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATUS UPDATE PANEL -->
+    <div>
+      <div class="screen-name-label">12 · Status Update Panel</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:rgba(0,0,0,0.4)">
+          <!-- Blurred bg -->
+          <div style="height:200px;background:var(--bg);padding:20px;opacity:0.3;">
+            <div style="background:white;height:40px;border-radius:10px;margin-bottom:8px;"></div>
+            <div style="background:white;height:40px;border-radius:10px;"></div>
+          </div>
+          <!-- Bottom Sheet -->
+          <div class="status-panel">
+            <div class="panel-handle"></div>
+            <h3 style="font-size:17px;font-weight:800;margin-bottom:16px;">Update Order #4821</h3>
+            <div class="status-options">
+              <div class="status-option">
+                <div class="status-option-icon">✅</div>
+                <div>
+                  <div class="status-option-label">Accepted</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Confirm you've received this order</div>
+                </div>
+              </div>
+              <div class="status-option selected">
+                <div class="status-option-icon">🍳</div>
+                <div>
+                  <div class="status-option-label">Preparing</div>
+                  <div style="font-size:11px;color:var(--primary);">Currently selected</div>
+                </div>
+              </div>
+              <div class="status-option">
+                <div class="status-option-icon">📦</div>
+                <div>
+                  <div class="status-option-label">Ready for Pickup</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Assign delivery partner</div>
+                </div>
+              </div>
+              <div class="status-option">
+                <div class="status-option-icon">🚫</div>
+                <div>
+                  <div class="status-option-label">Cancel Order</div>
+                  <div style="font-size:11px;color:var(--error);">Customer will be notified & refunded</div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:16px;">Apply Status Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLETION PROOF -->
+    <div>
+      <div class="screen-name-label">13 · Completion Proof Upload</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="orders-header">
+            <div class="back-row" style="margin-bottom:0;">
+              <div class="back-circle" style="background:var(--bg);color:var(--text-primary);width:36px;height:36px;border-radius:10px;border:1px solid var(--border);">←</div>
+              <div>
+                <h2 style="font-size:18px;">Completion Proof</h2>
+                <p style="font-size:12px;color:var(--text-muted);">Order #4821</p>
+              </div>
+            </div>
+          </div>
+          <div class="screen-content" style="padding-top:16px;">
+            <div class="alert-card" style="margin-bottom:14px;">
+              <div class="alert-icon">ℹ️</div>
+              <div class="alert-info">
+                <div class="alert-title">Proof Required</div>
+                <div class="alert-msg">Upload photo & get customer signature to complete</div>
+              </div>
+            </div>
+            <!-- Photo Proof -->
+            <div class="section-h">Delivery Photo</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+              <div style="height:100px;background:linear-gradient(135deg,#EEF2FF,#E0E7FF);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:36px;border:2px solid var(--primary);">🥘</div>
+              <div class="proof-upload" style="height:100px;padding:12px;">
+                <div class="proof-icon">📷</div>
+                <p style="font-size:10px;">Add another</p>
+              </div>
+            </div>
+            <!-- Signature -->
+            <div class="section-h">Customer Signature</div>
+            <div style="border:2px dashed var(--border);border-radius:var(--radius);height:120px;background:#FAFBFF;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;">
+              <div style="font-size:28px;">✍️</div>
+              <p style="font-size:12px;color:var(--text-muted);">Tap to collect signature</p>
+              <span style="font-size:11px;color:var(--primary);font-weight:600;">Show to customer</span>
+            </div>
+            <div class="section-h">Notes (Optional)</div>
+            <textarea class="input-field" style="height:80px;resize:none;" placeholder="E.g. Left at door, building B entrance..."></textarea>
+            <button class="btn btn-success" style="margin-top:4px;">✓ Mark as Delivered</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSIGNMENT SCREEN -->
+    <div>
+      <div class="screen-name-label">14 · Rider Assignment</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="orders-header">
+            <h2>Assign Delivery</h2>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:2px;">Order #4821 · Ready for pickup</p>
+          </div>
+          <div class="screen-content" style="padding-top:16px;">
+            <div class="section-h">Available Riders</div>
+            <!-- Rider 1 -->
+            <div class="card" style="margin-bottom:10px;border:2px solid var(--primary);">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="avatar" style="background:#EEF2FF;color:var(--primary);font-size:20px;">🛵</div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:700;">Raju Kumar</div>
+                  <div style="font-size:11px;color:var(--text-muted);">0.4 km away · 4.9⭐</div>
+                </div>
+                <div style="text-align:right;">
+                  <div class="badge badge-success">Free</div>
+                  <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">~4 min</div>
+                </div>
+              </div>
+              <button class="btn btn-primary" style="margin-top:10px;padding:10px;">Assign to Raju</button>
+            </div>
+            <!-- Rider 2 -->
+            <div class="card" style="margin-bottom:10px;opacity:0.75;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="avatar" style="background:#EEF2FF;color:var(--primary);font-size:20px;">🛵</div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:700;">Suresh M.</div>
+                  <div style="font-size:11px;color:var(--text-muted);">1.2 km away · 4.7⭐</div>
+                </div>
+                <div style="text-align:right;">
+                  <div class="badge badge-warning">1 Active</div>
+                  <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">~11 min</div>
+                </div>
+              </div>
+              <button class="btn btn-outline" style="margin-top:10px;padding:10px;">Assign</button>
+            </div>
+            <div style="padding:10px;background:var(--bg);border-radius:12px;text-align:center;border:1.5px dashed var(--border);">
+              <p style="font-size:12px;color:var(--text-muted);">+ Auto-assign to nearest available rider</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ CATALOG ═══════════════ -->
+  <div class="section-label">🗂️ Catalog Management</div>
+  <div class="screens-grid">
+
+    <!-- CATALOG HUB - FOOD -->
+    <div>
+      <div class="screen-name-label">15 · Catalog Hub — Food Menu</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="catalog-header">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2>Catalog</h2>
+              <button class="btn btn-accent btn-sm">+ Add Item</button>
+            </div>
+          </div>
+          <!-- Vertical Switcher -->
+          <div class="vertical-switcher">
+            <div class="vertical-pill active">
+              <div class="vertical-pill-icon">🍔</div>
+              <div class="vertical-pill-label">Food</div>
+            </div>
+            <div class="vertical-pill">
+              <div class="vertical-pill-icon">👕</div>
+              <div class="vertical-pill-label">Laundry</div>
+            </div>
+            <div class="vertical-pill">
+              <div class="vertical-pill-icon">🚗</div>
+              <div class="vertical-pill-label">Car</div>
+            </div>
+            <div class="vertical-pill">
+              <div class="vertical-pill-icon">🏨</div>
+              <div class="vertical-pill-label">Hotel</div>
+            </div>
+            <div class="vertical-pill">
+              <div class="vertical-pill-icon">🛒</div>
+              <div class="vertical-pill-label">Market</div>
+            </div>
+            <div class="vertical-pill">
+              <div class="vertical-pill-icon">🔧</div>
+              <div class="vertical-pill-label">Services</div>
+            </div>
+          </div>
+          <div class="catalog-content">
+            <!-- Category: Starters -->
+            <div class="category-section">
+              <div class="category-title-row">
+                <div class="category-name">🍢 Starters (4)</div>
+                <div class="add-link">+ Add</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="menu-item-img">🥙</div>
+                <div class="menu-item-info">
+                  <div class="menu-item-name">Paneer Tikka</div>
+                  <div class="menu-item-desc">Grilled cottage cheese, spices</div>
+                  <div class="menu-item-price">₹180</div>
+                </div>
+                <div class="menu-item-actions">
+                  <div class="toggle"></div>
+                  <div class="badge badge-warning" style="font-size:9px;">Low Stock</div>
+                </div>
+              </div>
+              <div class="menu-item-card">
+                <div class="menu-item-img">🍗</div>
+                <div class="menu-item-info">
+                  <div class="menu-item-name">Chicken 65</div>
+                  <div class="menu-item-desc">Deep fried, south spices</div>
+                  <div class="menu-item-price">₹210</div>
+                </div>
+                <div class="menu-item-actions">
+                  <div class="toggle"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Category: Mains -->
+            <div class="category-section">
+              <div class="category-title-row">
+                <div class="category-name">🍲 Main Course (6)</div>
+                <div class="add-link">+ Add</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="menu-item-img">🍛</div>
+                <div class="menu-item-info">
+                  <div class="menu-item-name">Butter Chicken</div>
+                  <div class="menu-item-desc">Creamy tomato gravy</div>
+                  <div class="menu-item-price">₹280</div>
+                </div>
+                <div class="menu-item-actions">
+                  <div class="toggle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item"><div class="nav-icon">🏠</div><span>Home</span></div>
+            <div class="nav-item"><div class="nav-icon">📦</div><span>Orders</span></div>
+            <div class="nav-item active"><div class="nav-icon">🗂️</div><span>Catalog</span></div>
+            <div class="nav-item"><div class="nav-icon">💬</div><span>Inbox</span></div>
+            <div class="nav-item"><div class="nav-icon">👤</div><span>Account</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALOG - AVAILABILITY WINDOWS -->
+    <div>
+      <div class="screen-name-label">16 · Food — Availability Windows</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="catalog-header">
+            <div class="back-row" style="margin-bottom:8px;">
+              <div class="back-circle" style="background:var(--bg);color:var(--text-primary);width:36px;height:36px;border-radius:10px;border:1px solid var(--border);">←</div>
+              <h2 style="font-size:18px;">Availability Windows</h2>
+            </div>
+          </div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:8px;">
+            <div class="section-h">Operating Hours</div>
+            <div class="avail-row">
+              <div class="avail-day">Mon</div>
+              <div class="avail-time">09:00 AM – 10:00 PM</div>
+              <div class="toggle"></div>
+            </div>
+            <div class="avail-row">
+              <div class="avail-day">Tue</div>
+              <div class="avail-time">09:00 AM – 10:00 PM</div>
+              <div class="toggle"></div>
+            </div>
+            <div class="avail-row">
+              <div class="avail-day">Wed</div>
+              <div class="avail-time">09:00 AM – 10:00 PM</div>
+              <div class="toggle"></div>
+            </div>
+            <div class="avail-row">
+              <div class="avail-day">Thu</div>
+              <div class="avail-time">09:00 AM – 10:00 PM</div>
+              <div class="toggle"></div>
+            </div>
+            <div class="avail-row">
+              <div class="avail-day">Fri</div>
+              <div class="avail-time">09:00 AM – 11:00 PM</div>
+              <div class="toggle"></div>
+            </div>
+            <div class="avail-row">
+              <div class="avail-day">Sat</div>
+              <div class="avail-time">10:00 AM – 11:00 PM</div>
+              <div class="toggle"></div>
+            </div>
+            <div class="avail-row">
+              <div class="avail-day">Sun</div>
+              <div class="avail-time">Closed</div>
+              <div class="toggle off"></div>
+            </div>
+            <div class="section-h" style="margin-top:8px;">Special Closures</div>
+            <div class="card" style="border:1.5px dashed var(--border);display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <span style="font-size:24px;">📅</span>
+              <div>
+                <div style="font-size:13px;font-weight:700;">Add Holiday / Closure Date</div>
+                <div style="font-size:11px;color:var(--text-muted);">Block specific dates from orders</div>
+              </div>
+            </div>
+            <button class="btn btn-primary">Save Schedule</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALOG - LAUNDRY -->
+    <div>
+      <div class="screen-name-label">17 · Catalog — Laundry Services</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="catalog-header">
+            <h2>Laundry Services</h2>
+          </div>
+          <div class="vertical-switcher" style="padding:10px 16px;">
+            <div class="vertical-pill"><div class="vertical-pill-icon">🍔</div><div class="vertical-pill-label">Food</div></div>
+            <div class="vertical-pill active"><div class="vertical-pill-icon">👕</div><div class="vertical-pill-label">Laundry</div></div>
+            <div class="vertical-pill"><div class="vertical-pill-icon">🚗</div><div class="vertical-pill-label">Car</div></div>
+          </div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:10px;">
+            <div class="section-h">Service Types</div>
+            <!-- Service types -->
+            <div class="menu-item-card">
+              <div class="menu-item-img" style="background:linear-gradient(135deg,#EEF2FF,#E0E7FF);">👕</div>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Wash & Fold</div>
+                <div class="menu-item-desc">Standard wash, machine dry, fold</div>
+                <div class="menu-item-price">₹50/kg</div>
+              </div>
+              <div class="toggle"></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-img" style="background:linear-gradient(135deg,#EEF2FF,#E0E7FF);">👔</div>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Dry Clean</div>
+                <div class="menu-item-desc">Professional dry cleaning</div>
+                <div class="menu-item-price">₹120/pc</div>
+              </div>
+              <div class="toggle"></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-img" style="background:linear-gradient(135deg,#EEF2FF,#E0E7FF);">🧺</div>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Wash & Iron</div>
+                <div class="menu-item-desc">Washed + pressed</div>
+                <div class="menu-item-price">₹70/kg</div>
+              </div>
+              <div class="toggle"></div>
+            </div>
+            <!-- Weight Pricing -->
+            <div class="section-h">Weight Pricing Slabs</div>
+            <div class="card" style="padding:12px;">
+              <div class="weight-row">
+                <div class="weight-range">0 – 5 kg</div>
+                <div class="weight-price">₹50/kg</div>
+                <div style="font-size:18px;cursor:pointer;color:var(--text-muted);">✏️</div>
+              </div>
+              <div class="weight-row">
+                <div class="weight-range">5 – 10 kg</div>
+                <div class="weight-price">₹45/kg</div>
+                <div style="font-size:18px;cursor:pointer;color:var(--text-muted);">✏️</div>
+              </div>
+              <div class="weight-row">
+                <div class="weight-range">10+ kg</div>
+                <div class="weight-price">₹40/kg</div>
+                <div style="font-size:18px;cursor:pointer;color:var(--text-muted);">✏️</div>
+              </div>
+              <button class="btn btn-outline" style="margin-top:10px;padding:8px;">+ Add Slab</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALOG - CAR RENTAL -->
+    <div>
+      <div class="screen-name-label">18 · Catalog — Car Rental Fleet</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="catalog-header">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2>Fleet Management</h2>
+              <button class="btn btn-accent btn-sm">+ Add Car</button>
+            </div>
+          </div>
+          <div class="vertical-switcher" style="padding:10px 16px;">
+            <div class="vertical-pill"><div class="vertical-pill-icon">🍔</div><div class="vertical-pill-label">Food</div></div>
+            <div class="vertical-pill"><div class="vertical-pill-icon">👕</div><div class="vertical-pill-label">Laundry</div></div>
+            <div class="vertical-pill active"><div class="vertical-pill-icon">🚗</div><div class="vertical-pill-label">Car</div></div>
+          </div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:4px;">
+            <div class="section-h">Fleet (3 Vehicles)</div>
+            <div class="fleet-card">
+              <div class="fleet-img">🚗</div>
+              <div class="fleet-info">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div class="fleet-name">Swift Dzire 2022</div>
+                  <div class="badge badge-success">Available</div>
+                </div>
+                <div class="fleet-details">KA-01-AB-1234 · Sedan · AC · 5 seats</div>
+                <div class="fleet-footer">
+                  <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹800/day</div>
+                  <div style="display:flex;gap:6px;">
+                    <button class="btn btn-sm btn-outline">Calendar</button>
+                    <button class="btn btn-sm btn-ghost">Edit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="fleet-card">
+              <div class="fleet-img">🚙</div>
+              <div class="fleet-info">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div class="fleet-name">Innova Crysta 2023</div>
+                  <div class="badge badge-warning">Booked</div>
+                </div>
+                <div class="fleet-details">KA-02-CD-5678 · MUV · AC · 7 seats</div>
+                <div class="fleet-footer">
+                  <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹1,800/day</div>
+                  <div style="display:flex;gap:6px;">
+                    <button class="btn btn-sm btn-outline">Calendar</button>
+                    <button class="btn btn-sm btn-ghost">Edit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Availability Calendar -->
+            <div class="section-h">November Availability</div>
+            <div class="card">
+              <div class="cal-grid">
+                <div class="cal-day header">S</div>
+                <div class="cal-day header">M</div>
+                <div class="cal-day header">T</div>
+                <div class="cal-day header">W</div>
+                <div class="cal-day header">T</div>
+                <div class="cal-day header">F</div>
+                <div class="cal-day header">S</div>
+                <div class="cal-day blocked"></div>
+                <div class="cal-day blocked"></div>
+                <div class="cal-day blocked"></div>
+                <div class="cal-day blocked"></div>
+                <div class="cal-day available">1</div>
+                <div class="cal-day available">2</div>
+                <div class="cal-day available">3</div>
+                <div class="cal-day booked">4</div>
+                <div class="cal-day booked">5</div>
+                <div class="cal-day available">6</div>
+                <div class="cal-day available">7</div>
+                <div class="cal-day available">8</div>
+                <div class="cal-day available">9</div>
+                <div class="cal-day booked">10</div>
+                <div class="cal-day booked">11</div>
+                <div class="cal-day booked">12</div>
+                <div class="cal-day booked">13</div>
+                <div class="cal-day today">14</div>
+                <div class="cal-day available">15</div>
+                <div class="cal-day available">16</div>
+                <div class="cal-day available">17</div>
+              </div>
+              <div style="display:flex;gap:12px;margin-top:10px;font-size:10px;justify-content:center;">
+                <div style="display:flex;align-items:center;gap:4px;"><div style="width:10px;height:10px;background:#ECFDF5;border-radius:3px;"></div>Available</div>
+                <div style="display:flex;align-items:center;gap:4px;"><div style="width:10px;height:10px;background:#EEF2FF;border-radius:3px;"></div>Booked</div>
+                <div style="display:flex;align-items:center;gap:4px;"><div style="width:10px;height:10px;background:var(--primary);border-radius:3px;"></div>Today</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALOG - HOTEL -->
+    <div>
+      <div class="screen-name-label">19 · Catalog — Hotel Rooms</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="catalog-header">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2>Room Inventory</h2>
+              <button class="btn btn-accent btn-sm">+ Add Room</button>
+            </div>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:4px;">
+            <div class="kpi-row" style="margin-bottom:4px;">
+              <div class="kpi-card">
+                <div class="kpi-num" style="color:var(--success);">12</div>
+                <div class="kpi-label">Available</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-num" style="color:var(--accent);">8</div>
+                <div class="kpi-label">Occupied</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-num" style="color:var(--error);">2</div>
+                <div class="kpi-label">Maintenance</div>
+              </div>
+            </div>
+            <div class="room-card">
+              <div class="room-img">🛏️</div>
+              <div class="room-info">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div class="room-name">Deluxe Double Room</div>
+                  <div class="badge badge-success">4 Avail.</div>
+                </div>
+                <div class="room-amenities">AC · TV · WiFi · Breakfast Incl.</div>
+                <div class="room-footer">
+                  <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹2,400/night</div>
+                  <button class="btn btn-sm btn-outline">Manage</button>
+                </div>
+              </div>
+            </div>
+            <div class="room-card">
+              <div class="room-img">🌟</div>
+              <div class="room-info">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div class="room-name">Premium Suite</div>
+                  <div class="badge badge-warning">2 Booked</div>
+                </div>
+                <div class="room-amenities">AC · Jacuzzi · Balcony · Breakfast</div>
+                <div class="room-footer">
+                  <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹5,500/night</div>
+                  <button class="btn btn-sm btn-outline">Manage</button>
+                </div>
+              </div>
+            </div>
+            <div class="room-card">
+              <div class="room-img">🔧</div>
+              <div class="room-info">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div class="room-name">Standard Single</div>
+                  <div class="badge badge-error">Maintenance</div>
+                </div>
+                <div class="room-amenities">AC · TV · WiFi</div>
+                <div class="room-footer">
+                  <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹1,200/night</div>
+                  <button class="btn btn-sm btn-ghost">Fix Date</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALOG - MARKETPLACE -->
+    <div>
+      <div class="screen-name-label">20 · Catalog — Marketplace / SKU</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="catalog-header">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2>Product Catalog</h2>
+              <button class="btn btn-accent btn-sm">+ Add SKU</button>
+            </div>
+            <div class="search-bar" style="margin-top:10px;">
+              <div class="search-icon">🔍</div>
+              <input placeholder="Search by name or SKU...">
+            </div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <div class="section-h" style="margin:0;">All Products (24)</div>
+              <div class="chip" style="font-size:11px;padding:6px 12px;">🔽 Sort</div>
+            </div>
+            <div class="sku-card">
+              <div class="sku-img">📦</div>
+              <div class="sku-info">
+                <div class="sku-name">Basmati Rice 5kg</div>
+                <div class="sku-code">SKU: GRO-001 · Food & Grocery</div>
+                <div class="sku-stock-row">
+                  <div class="stock-bar"><div class="stock-fill" style="width:75%"></div></div>
+                  <div class="stock-num">75 units</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:14px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹280</div>
+                <div style="font-size:18px;margin-top:4px;cursor:pointer;">✏️</div>
+              </div>
+            </div>
+            <div class="sku-card">
+              <div class="sku-img">🧴</div>
+              <div class="sku-info">
+                <div class="sku-name">Dove Shampoo 400ml</div>
+                <div class="sku-code">SKU: CARE-024 · Personal Care</div>
+                <div class="sku-stock-row">
+                  <div class="stock-bar"><div class="stock-fill low" style="width:8%"></div></div>
+                  <div class="stock-num" style="color:var(--error);">4 units ⚠️</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:14px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹185</div>
+                <div style="font-size:18px;margin-top:4px;cursor:pointer;">✏️</div>
+              </div>
+            </div>
+            <div class="sku-card">
+              <div class="sku-img">🥤</div>
+              <div class="sku-info">
+                <div class="sku-name">Coca-Cola 2L</div>
+                <div class="sku-code">SKU: BEV-008 · Beverages</div>
+                <div class="sku-stock-row">
+                  <div class="stock-bar"><div class="stock-fill" style="width:52%"></div></div>
+                  <div class="stock-num">52 units</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:14px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹95</div>
+                <div style="font-size:18px;margin-top:4px;cursor:pointer;">✏️</div>
+              </div>
+            </div>
+            <div class="sku-card">
+              <div class="sku-img">🧹</div>
+              <div class="sku-info">
+                <div class="sku-name">Harpic Toilet Cleaner</div>
+                <div class="sku-code">SKU: CLN-015 · Cleaning</div>
+                <div class="sku-stock-row">
+                  <div class="stock-bar"><div class="stock-fill" style="width:90%"></div></div>
+                  <div class="stock-num">90 units</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:14px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">₹72</div>
+                <div style="font-size:18px;margin-top:4px;cursor:pointer;">✏️</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALOG - HOME SERVICES -->
+    <div>
+      <div class="screen-name-label">21 · Catalog — Home Services</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="catalog-header">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2>Service Packages</h2>
+              <button class="btn btn-accent btn-sm">+ Add Package</button>
+            </div>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:4px;">
+            <div class="section-h">Active Packages (4)</div>
+            <div class="service-pkg">
+              <div class="pkg-header">
+                <div class="pkg-icon" style="background:#EEF2FF;">🔧</div>
+                <div>
+                  <div class="pkg-name">Basic Plumbing</div>
+                  <div class="pkg-desc">Leaks, faucets, pipe fitting</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
+                <div class="cust-tag" style="background:#EEF2FF;color:var(--primary);">Leak Fix</div>
+                <div class="cust-tag" style="background:#EEF2FF;color:var(--primary);">Faucet Replace</div>
+                <div class="cust-tag" style="background:#EEF2FF;color:var(--primary);">Pipe Repair</div>
+              </div>
+              <div class="pkg-footer">
+                <div class="pkg-price">₹499</div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="pkg-duration">⏱ 1–2 hrs</div>
+                  <div class="toggle"></div>
+                </div>
+              </div>
+            </div>
+            <div class="service-pkg">
+              <div class="pkg-header">
+                <div class="pkg-icon" style="background:#FEF3C7;">⚡</div>
+                <div>
+                  <div class="pkg-name">Electrical Checkup</div>
+                  <div class="pkg-desc">Wiring, switches, fuse board</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
+                <div class="cust-tag" style="background:#FEF3C7;color:#D97706;">Wiring</div>
+                <div class="cust-tag" style="background:#FEF3C7;color:#D97706;">Switch Repair</div>
+              </div>
+              <div class="pkg-footer">
+                <div class="pkg-price">₹799</div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="pkg-duration">⏱ 2–3 hrs</div>
+                  <div class="toggle"></div>
+                </div>
+              </div>
+            </div>
+            <div class="service-pkg">
+              <div class="pkg-header">
+                <div class="pkg-icon" style="background:#ECFDF5;">🧹</div>
+                <div>
+                  <div class="pkg-name">Deep Cleaning</div>
+                  <div class="pkg-desc">Full home, bathroom, kitchen</div>
+                </div>
+              </div>
+              <div class="pkg-footer">
+                <div class="pkg-price">₹1,299</div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="pkg-duration">⏱ 4–6 hrs</div>
+                  <div class="toggle off"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ CUSTOMERS ═══════════════ -->
+  <div class="section-label">👥 Customer Management</div>
+  <div class="screens-grid">
+
+    <!-- CUSTOMER LIST -->
+    <div>
+      <div class="screen-name-label">22 · Customer List</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="orders-header">
+            <h2>Customers</h2>
+            <div class="search-bar" style="margin-top:10px;">
+              <div class="search-icon">🔍</div>
+              <input placeholder="Search by name or phone...">
+            </div>
+          </div>
+          <div class="filter-row">
+            <div class="filter-pill active">All</div>
+            <div class="filter-pill">Regular</div>
+            <div class="filter-pill">New</div>
+            <div class="filter-pill">Blocked</div>
+            <div class="filter-pill">VIP</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div class="customer-card">
+              <div class="cust-avatar" style="background:linear-gradient(135deg,#EEF2FF,#E0E7FF);color:var(--primary);">R</div>
+              <div class="cust-info">
+                <div class="cust-name">Riya M••••</div>
+                <div class="cust-meta">12 orders · ₹4,280 spent · Last: 2 days ago</div>
+                <div class="cust-tags">
+                  <div class="cust-tag" style="background:#EEF2FF;color:var(--primary);">Regular</div>
+                  <div class="cust-tag" style="background:#FEF3C7;color:#D97706;">⭐ VIP</div>
+                </div>
+              </div>
+              <span style="font-size:20px;color:var(--text-muted);cursor:pointer;">›</span>
+            </div>
+            <div class="customer-card">
+              <div class="cust-avatar" style="background:linear-gradient(135deg,#ECFDF5,#D1FAE5);color:var(--success);">K</div>
+              <div class="cust-info">
+                <div class="cust-name">Karan S••••</div>
+                <div class="cust-meta">8 orders · ₹2,940 spent · Last: 5h ago</div>
+                <div class="cust-tags">
+                  <div class="cust-tag" style="background:#EEF2FF;color:var(--primary);">Regular</div>
+                </div>
+              </div>
+              <span style="font-size:20px;color:var(--text-muted);cursor:pointer;">›</span>
+            </div>
+            <div class="customer-card">
+              <div class="cust-avatar" style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);color:#D97706;">A</div>
+              <div class="cust-info">
+                <div class="cust-name">Anita ••••</div>
+                <div class="cust-meta">3 orders · ₹840 spent · Last: 2 weeks ago</div>
+                <div class="cust-tags">
+                  <div class="cust-tag">New</div>
+                </div>
+              </div>
+              <span style="font-size:20px;color:var(--text-muted);cursor:pointer;">›</span>
+            </div>
+            <div class="customer-card" style="opacity:0.65;border:1px solid #FECACA;">
+              <div class="cust-avatar" style="background:#FEF2F2;color:var(--error);">M</div>
+              <div class="cust-info">
+                <div class="cust-name">Mohan ••••</div>
+                <div class="cust-meta">1 order · ₹160 spent</div>
+                <div class="cust-tags">
+                  <div class="cust-tag" style="background:#FEF2F2;color:var(--error);">🚫 Blocked</div>
+                </div>
+              </div>
+              <span style="font-size:20px;color:var(--text-muted);cursor:pointer;">›</span>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item"><div class="nav-icon">🏠</div><span>Home</span></div>
+            <div class="nav-item"><div class="nav-icon">📦</div><span>Orders</span></div>
+            <div class="nav-item"><div class="nav-icon">🗂️</div><span>Catalog</span></div>
+            <div class="nav-item"><div class="nav-icon">💬</div><span>Inbox</span></div>
+            <div class="nav-item active"><div class="nav-icon">👤</div><span>Account</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOMER DETAIL -->
+    <div>
+      <div class="screen-name-label">23 · Customer Detail</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="cust-detail-hero">
+            <div class="back-circle" style="position:absolute;top:40px;left:20px;">←</div>
+            <div class="cust-detail-avatar">R</div>
+            <div class="cust-detail-name">Riya M••••</div>
+            <div class="cust-detail-since">Customer since Aug 2024</div>
+            <div class="cust-stat-row" style="width:100%;">
+              <div class="cust-stat">
+                <div class="cust-stat-num">12</div>
+                <div class="cust-stat-label">Orders</div>
+              </div>
+              <div class="cust-stat" style="border-left:1px solid rgba(255,255,255,0.2);border-right:1px solid rgba(255,255,255,0.2);">
+                <div class="cust-stat-num">₹4.2k</div>
+                <div class="cust-stat-label">Spent</div>
+              </div>
+              <div class="cust-stat">
+                <div class="cust-stat-num">4.9⭐</div>
+                <div class="cust-stat-label">Avg Rating</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:14px 16px;">
+            <!-- Order History -->
+            <div class="section-h">Order History</div>
+            <div class="history-item">
+              <div class="history-icon">🍛</div>
+              <div class="history-info">
+                <div class="history-name">Butter Chicken, Naan × 4</div>
+                <div class="history-date">Nov 12, 2025 · Order #4821</div>
+              </div>
+              <div class="history-amount">₹580</div>
+            </div>
+            <div class="history-item">
+              <div class="history-icon">🥗</div>
+              <div class="history-info">
+                <div class="history-name">Veg Thali × 2</div>
+                <div class="history-date">Nov 8, 2025 · Order #4790</div>
+              </div>
+              <div class="history-amount">₹440</div>
+            </div>
+            <!-- Notes & Tags -->
+            <div class="section-h">Notes <span class="see-all">+ Add Note</span></div>
+            <div class="note-card">
+              <div class="note-meta">You · Nov 9, 2025</div>
+              <div class="note-text">Prefers extra spicy. Allergic to nuts. Always orders on weekends.</div>
+            </div>
+            <div class="note-card">
+              <div class="note-meta">You · Oct 25, 2025</div>
+              <div class="note-text">VIP customer. Gave ₹1000 tip last Diwali order.</div>
+            </div>
+            <!-- Tags -->
+            <div class="section-h">Tags</div>
+            <div class="category-chips">
+              <div class="chip selected">⭐ VIP</div>
+              <div class="chip selected">🌶️ Spicy Pref</div>
+              <div class="chip">Weekend Regular</div>
+              <div class="chip">+ Add Tag</div>
+            </div>
+            <!-- Actions -->
+            <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;">
+              <button class="btn btn-danger" style="width:100%;background:#FEF2F2;color:var(--error);border:1px solid #FECACA;">🚫 Block This Customer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ INBOX ═══════════════ -->
+  <div class="section-label">💬 Inbox</div>
+  <div class="screens-grid">
+
+    <!-- INBOX -->
+    <div>
+      <div class="screen-name-label">24 · Inbox / Messages</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="inbox-header">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2>Inbox</h2>
+              <span class="badge badge-error" style="font-size:12px;padding:5px 12px;">3 Unread</span>
+            </div>
+            <p>Customer messages & system alerts</p>
+            <div class="search-bar" style="margin-top:10px;">
+              <div class="search-icon">🔍</div>
+              <input placeholder="Search messages...">
+            </div>
+          </div>
+          <div class="filter-row">
+            <div class="filter-pill active">All</div>
+            <div class="filter-pill">Customers</div>
+            <div class="filter-pill">System</div>
+            <div class="filter-pill">Platform</div>
+          </div>
+          <!-- Messages -->
+          <div style="background:white;">
+            <div class="msg-item unread">
+              <div class="msg-avatar" style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;">R</div>
+              <div class="msg-body">
+                <div class="msg-header">
+                  <div class="msg-name">Riya M•••• <span style="font-size:10px;color:var(--primary);">· Order #4825</span></div>
+                  <div class="msg-time">2m</div>
+                </div>
+                <div class="msg-preview">When will my order be ready? I've been waiting...</div>
+              </div>
+              <div class="msg-unread-dot"></div>
+            </div>
+            <div class="msg-item unread">
+              <div class="msg-avatar" style="background:linear-gradient(135deg,var(--error),#F87171);color:white;">⚠️</div>
+              <div class="msg-body">
+                <div class="msg-header">
+                  <div class="msg-name">System Alert</div>
+                  <div class="msg-time">8m</div>
+                </div>
+                <div class="msg-preview">SLA breach risk: Order #4821 · 12 minutes left</div>
+              </div>
+              <div class="msg-unread-dot"></div>
+            </div>
+            <div class="msg-item unread">
+              <div class="msg-avatar" style="background:linear-gradient(135deg,var(--secondary),#7A9A6A);color:white;">K</div>
+              <div class="msg-body">
+                <div class="msg-header">
+                  <div class="msg-name">Karan S•••• <span style="font-size:10px;color:var(--primary);">· Order #4821</span></div>
+                  <div class="msg-time">15m</div>
+                </div>
+                <div class="msg-preview">Can you add extra green chutney please?</div>
+              </div>
+              <div class="msg-unread-dot"></div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-avatar" style="background:linear-gradient(135deg,var(--accent),#FCD34D);color:#1A1A00;">P</div>
+              <div class="msg-body">
+                <div class="msg-header">
+                  <div class="msg-name">Platform Update</div>
+                  <div class="msg-time">1h</div>
+                </div>
+                <div class="msg-preview">New feature: Real-time delivery tracking is now live</div>
+              </div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-avatar" style="background:linear-gradient(135deg,#ECFDF5,#D1FAE5);color:var(--success);">A</div>
+              <div class="msg-body">
+                <div class="msg-header">
+                  <div class="msg-name">Anita ••••</div>
+                  <div class="msg-time">2h</div>
+                </div>
+                <div class="msg-preview">Thank you! Food was delicious as always 😊</div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item"><div class="nav-icon">🏠</div><span>Home</span></div>
+            <div class="nav-item"><div class="nav-icon">📦</div><span>Orders</span></div>
+            <div class="nav-item"><div class="nav-icon">🗂️</div><span>Catalog</span></div>
+            <div class="nav-item active"><div class="nav-icon">💬</div><span>Inbox</span></div>
+            <div class="nav-item"><div class="nav-icon">👤</div><span>Account</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCOUNT -->
+    <div>
+      <div class="screen-name-label">25 · Account / Profile</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg)">
+          <div class="account-hero">
+            <div class="account-avatar">🏪</div>
+            <div class="account-name">Spice Garden</div>
+            <div class="account-status">
+              <span style="width:8px;height:8px;background:#4ADE80;border-radius:50;display:inline-block;"></span>
+              Active · Food Provider
+            </div>
+            <div style="display:flex;gap:8px;margin-top:4px;">
+              <div class="badge" style="background:rgba(255,255,255,0.2);color:white;font-size:10px;">📍 Koramangala, Bengaluru</div>
+            </div>
+          </div>
+          <div class="account-stat-row">
+            <div class="account-stat-card">
+              <div class="account-stat-num">1,240</div>
+              <div class="account-stat-label">Total Orders</div>
+            </div>
+            <div class="account-stat-card">
+              <div class="account-stat-num">₹2.4L</div>
+              <div class="account-stat-label">Total Earned</div>
+            </div>
+          </div>
+          <div class="menu-group">
+            <div class="menu-group-label">Business</div>
+            <div class="menu-row">
+              <div class="menu-row-icon" style="background:#EEF2FF;">📋</div>
+              <div class="menu-row-label">Business Profile</div>
+              <div class="menu-row-chevron">›</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-icon" style="background:#FEF3C7;">💳</div>
+              <div class="menu-row-label">Bank & Payments</div>
+              <div class="menu-row-chevron">›</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-icon" style="background:#ECFDF5;">📊</div>
+              <div class="menu-row-label">Analytics & Reports</div>
+              <div class="menu-row-chevron">›</div>
+            </div>
+          </div>
+          <div class="menu-group" style="padding-top:0;">
+            <div class="menu-group-label">Support</div>
+            <div class="menu-row">
+              <div class="menu-row-icon" style="background:#F0FDF4;">🎧</div>
+              <div class="menu-row-label">Help & Support</div>
+              <div class="menu-row-chevron">›</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-icon" style="background:#FEF2F2;">🔒</div>
+              <div class="menu-row-label">Privacy & Security</div>
+              <div class="menu-row-chevron">›</div>
+            </div>
+            <div class="menu-row" style="margin-top:8px;border:1px solid #FECACA;">
+              <div class="menu-row-icon" style="background:#FEF2F2;">🚪</div>
+              <div class="menu-row-label" style="color:var(--error);">Sign Out</div>
+              <div class="menu-row-chevron" style="color:var(--error);">›</div>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item"><div class="nav-icon">🏠</div><span>Home</span></div>
+            <div class="nav-item"><div class="nav-icon">📦</div><span>Orders</span></div>
+            <div class="nav-item"><div class="nav-icon">🗂️</div><span>Catalog</span></div>
+            <div class="nav-item"><div class="nav-icon">💬</div><span>Inbox</span></div>
+            <div class="nav-item active"><div class="nav-icon">👤</div><span>Account</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- ═══════════════ §8 MESSAGING & INBOX ═══════════════ -->
+  <div class="section-label">💬 Messaging & Inbox</div>
+  <div class="screens-grid">
+
+    <!-- CHAT DETAIL -->
+    <div>
+      <div class="screen-name-label">26 · Chat Detail</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:#F0F4FF;display:flex;flex-direction:column;">
+          <div style="background:white;padding:38px 16px 12px;border-bottom:1px solid var(--border);flex-shrink:0;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="font-size:22px;cursor:pointer;">‹</div>
+              <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">R</div>
+              <div style="flex:1;">
+                <div style="font-size:14px;font-weight:700;">Riya Mehta</div>
+                <div style="font-size:11px;color:var(--text-muted);">Order #4825 · Biryani × 2</div>
+              </div>
+              <div class="badge badge-warning" style="font-size:10px;">⏳ SLA 18m</div>
+            </div>
+          </div>
+          <div style="flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+            <!-- order-linked banner -->
+            <div style="background:white;border-radius:12px;padding:10px 12px;border-left:3px solid var(--primary);font-size:11px;color:var(--text-secondary);">
+              📦 <strong>Order #4825</strong> · Biryani × 2, Raita × 1 · <strong style="color:var(--primary);">₹640</strong> · Preparing
+            </div>
+            <div style="align-self:flex-start;max-width:78%;">
+              <div style="background:white;border-radius:14px 14px 14px 4px;padding:10px 13px;font-size:13px;box-shadow:var(--shadow-sm);">When will my order be ready? I've been waiting 😅</div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:3px;padding-left:4px;">2:14 PM</div>
+            </div>
+            <div style="align-self:flex-end;max-width:78%;">
+              <div style="background:var(--primary);border-radius:14px 14px 4px 14px;padding:10px 13px;font-size:13px;color:white;">Hi Riya! Your order is almost ready, about 10–12 more minutes. Sorry for the wait! 🙏</div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:3px;text-align:right;padding-right:4px;">2:15 PM ✓✓</div>
+            </div>
+            <div style="align-self:flex-start;max-width:78%;">
+              <div style="background:white;border-radius:14px 14px 14px 4px;padding:10px 13px;font-size:13px;box-shadow:var(--shadow-sm);">Can you add extra raita? 🙏</div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:3px;padding-left:4px;">2:16 PM</div>
+            </div>
+            <!-- canned reply chips -->
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;">
+              <div style="background:white;border:1px solid var(--border);border-radius:20px;padding:5px 11px;font-size:11px;color:var(--primary);cursor:pointer;font-weight:600;">✓ Sure!</div>
+              <div style="background:white;border:1px solid var(--border);border-radius:20px;padding:5px 11px;font-size:11px;color:var(--primary);cursor:pointer;font-weight:600;">🚚 Out for delivery</div>
+              <div style="background:white;border:1px solid var(--border);border-radius:20px;padding:5px 11px;font-size:11px;color:var(--primary);cursor:pointer;font-weight:600;">⏳ 10 more mins</div>
+            </div>
+          </div>
+          <!-- input bar -->
+          <div style="background:white;border-top:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;align-items:center;flex-shrink:0;">
+            <div style="font-size:20px;cursor:pointer;">📎</div>
+            <input style="flex:1;border:1.5px solid var(--border);border-radius:20px;padding:8px 14px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;" placeholder="Type a message…">
+            <div style="width:36px;height:36px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:16px;cursor:pointer;">➤</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATTACHMENTS VIEWER -->
+    <div>
+      <div class="screen-name-label">27 · Attachments Viewer</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:#0F172A;display:flex;flex-direction:column;">
+          <div style="padding:38px 16px 12px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
+            <div style="color:rgba(255,255,255,0.7);font-size:22px;cursor:pointer;">‹</div>
+            <div style="flex:1;color:white;">
+              <div style="font-size:14px;font-weight:700;">Attachments</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);">Order #4825 · 3 files</div>
+            </div>
+            <div style="color:rgba(255,255,255,0.7);font-size:20px;cursor:pointer;">⋯</div>
+          </div>
+          <!-- main image preview -->
+          <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:16px;">
+            <div style="background:linear-gradient(135deg,#1E3A5F,#1E293B);border-radius:16px;width:100%;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(255,255,255,0.1);">
+              <div style="font-size:52px;">🧾</div>
+              <div style="color:rgba(255,255,255,0.8);font-size:13px;font-weight:600;">delivery_proof.jpg</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:11px;">Sent by Customer · Nov 16, 2:18 PM</div>
+            </div>
+          </div>
+          <!-- thumbnail strip -->
+          <div style="padding:0 14px 12px;display:flex;gap:8px;flex-shrink:0;">
+            <div style="width:60px;height:60px;background:#1E3A5F;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;border:2px solid var(--primary);">🧾</div>
+            <div style="width:60px;height:60px;background:#1E293B;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;border:2px solid rgba(255,255,255,0.1);">📄</div>
+            <div style="width:60px;height:60px;background:#1E293B;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;border:2px solid rgba(255,255,255,0.1);">📷</div>
+          </div>
+          <div style="padding:8px 14px 20px;display:flex;gap:8px;flex-shrink:0;">
+            <button class="btn btn-outline" style="flex:1;color:white;border-color:rgba(255,255,255,0.3);font-size:12px;">⬇ Download</button>
+            <button class="btn btn-primary" style="flex:1;font-size:12px;">↗ Share</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ §9 EARNINGS & FINANCE ═══════════════ -->
+  <div class="section-label">💰 Earnings & Finance</div>
+  <div class="screens-grid">
+
+    <!-- EARNINGS OVERVIEW -->
+    <div>
+      <div class="screen-name-label">28 · Earnings Overview</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="background:linear-gradient(135deg,#0F3460,var(--primary));padding:44px 20px 28px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+              <h2 style="color:white;font-size:20px;">Earnings</h2>
+              <div style="background:rgba(255,255,255,0.2);border-radius:20px;padding:4px 12px;color:white;font-size:12px;font-weight:600;">November 2025</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.12);border-radius:var(--radius);padding:18px;text-align:center;">
+              <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:4px;">Total Earnings</div>
+              <div style="color:white;font-size:36px;font-weight:800;font-family:'Sora',sans-serif;">₹68,420</div>
+              <div style="color:#4ADE80;font-size:12px;margin-top:4px;">↑ 14.2% vs last month</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
+              <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px;text-align:center;">
+                <div style="color:white;font-size:16px;font-weight:800;">₹52k</div>
+                <div style="color:rgba(255,255,255,0.6);font-size:10px;">Settled</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px;text-align:center;">
+                <div style="color:var(--accent-light);font-size:16px;font-weight:800;">₹16k</div>
+                <div style="color:rgba(255,255,255,0.6);font-size:10px;">Pending</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px;text-align:center;">
+                <div style="color:white;font-size:16px;font-weight:800;">340</div>
+                <div style="color:rgba(255,255,255,0.6);font-size:10px;">Orders</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-secondary);">BREAKDOWN</div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;"><span>Order Revenue</span><strong>₹72,400</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;color:var(--error);"><span>Platform Commission (5%)</span><span>–₹3,620</span></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;color:var(--error);"><span>Returns / Refunds</span><span>–₹360</span></div>
+              <div style="height:1px;background:var(--border);margin:10px 0;"></div>
+              <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:800;color:var(--primary);"><span>Net Earnings</span><span>₹68,420</span></div>
+            </div>
+            <button class="btn btn-outline" style="font-size:13px;">📥 Export Report (CSV/PDF)</button>
+            <button class="btn btn-primary" style="font-size:13px;">🏦 Setup Bank / UPI</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYOUT HISTORY -->
+    <div>
+      <div class="screen-name-label">29 · Payout History</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2 style="font-size:20px;font-weight:800;">Payout History</h2>
+              <button class="btn btn-sm btn-ghost">📥 Export</button>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:12px;">
+              <div style="flex:1;background:var(--bg);border-radius:10px;padding:10px;text-align:center;">
+                <div style="font-size:14px;font-weight:800;color:var(--success);">₹52,000</div>
+                <div style="font-size:10px;color:var(--text-muted);">Settled</div>
+              </div>
+              <div style="flex:1;background:var(--bg);border-radius:10px;padding:10px;text-align:center;">
+                <div style="font-size:14px;font-weight:800;color:var(--accent);">₹16,420</div>
+                <div style="font-size:10px;color:var(--text-muted);">Pending</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+            <!-- payout items -->
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px;">
+              <div style="width:42px;height:42px;background:#ECFDF5;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">✅</div>
+              <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">Weekly Settlement</div>
+                <div style="font-size:11px;color:var(--text-muted);">Nov 11–17, 2025 · HDFC ••3421</div>
+                <div style="font-size:10px;color:var(--success);font-weight:600;">Settled · Nov 18</div>
+              </div>
+              <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:var(--success);">+₹18,400</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px;">
+              <div style="width:42px;height:42px;background:#ECFDF5;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">✅</div>
+              <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">Weekly Settlement</div>
+                <div style="font-size:11px;color:var(--text-muted);">Nov 4–10, 2025 · HDFC ••3421</div>
+                <div style="font-size:10px;color:var(--success);font-weight:600;">Settled · Nov 11</div>
+              </div>
+              <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:var(--success);">+₹16,200</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px;">
+              <div style="width:42px;height:42px;background:#FFFBEB;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">⏳</div>
+              <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">Weekly Settlement</div>
+                <div style="font-size:11px;color:var(--text-muted);">Nov 18–24, 2025</div>
+                <div style="font-size:10px;color:#D97706;font-weight:600;">Processing · Due Nov 25</div>
+              </div>
+              <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:#D97706;">₹17,820</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px;">
+              <div style="width:42px;height:42px;background:#FEF2F2;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">↩️</div>
+              <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">Refund Deduction</div>
+                <div style="font-size:11px;color:var(--text-muted);">Order #4810 · Customer dispute</div>
+                <div style="font-size:10px;color:var(--error);font-weight:600;">Deducted · Nov 14</div>
+              </div>
+              <div style="font-size:15px;font-weight:800;font-family:'Sora',sans-serif;color:var(--error);">–₹360</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANK / UPI SETUP -->
+    <div>
+      <div class="screen-name-label">30 · Bank & UPI Setup</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <div style="font-size:22px;cursor:pointer;margin-bottom:10px;">‹</div>
+            <h2 style="font-size:20px;font-weight:800;">Payment Settings</h2>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:3px;">Manage bank account & UPI for payouts</p>
+          </div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+            <!-- linked bank -->
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);border-left:4px solid var(--success);">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <div style="font-size:24px;">🏦</div>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;">HDFC Bank</div>
+                  <div style="font-size:11px;color:var(--text-muted);">A/C ••••••3421 · IFSC HDFC0001234</div>
+                </div>
+                <div class="badge badge-success">Primary</div>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button class="btn btn-sm btn-ghost" style="flex:1;">✏️ Edit</button>
+                <button class="btn btn-sm btn-danger" style="flex:1;background:#FEF2F2;color:var(--error);">🗑 Remove</button>
+              </div>
+            </div>
+            <!-- upi -->
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="font-size:24px;">📱</div>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:700;">UPI ID</div>
+                  <div style="font-size:11px;color:var(--text-muted);">spicegarden@okhdfc</div>
+                </div>
+                <div class="badge badge-success">Verified</div>
+              </div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:10px;">SETTLEMENT SCHEDULE</div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Cycle</span><strong>Weekly (Mon)</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Min. threshold</span><strong>₹500</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;"><span>Next payout</span><strong style="color:var(--primary);">Nov 25, 2025</strong></div>
+            </div>
+            <button class="btn btn-primary">+ Add Bank Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ §10 ANALYTICS & REPORTING ═══════════════ -->
+  <div class="section-label">📊 Analytics & Reporting</div>
+  <div class="screens-grid">
+
+    <!-- OVERVIEW ANALYTICS -->
+    <div>
+      <div class="screen-name-label">31 · Overview Analytics</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:44px 16px 18px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+              <h2 style="color:white;font-size:20px;">Analytics</h2>
+              <div style="background:rgba(255,255,255,0.2);border-radius:20px;padding:4px 12px;color:white;font-size:11px;">Nov 2025</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;">
+                <div style="color:rgba(255,255,255,0.65);font-size:10px;">Revenue</div>
+                <div style="color:white;font-size:20px;font-weight:800;font-family:'Sora',sans-serif;">₹68.4k</div>
+                <div style="color:#4ADE80;font-size:10px;">↑ 14.2%</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;">
+                <div style="color:rgba(255,255,255,0.65);font-size:10px;">Orders</div>
+                <div style="color:white;font-size:20px;font-weight:800;font-family:'Sora',sans-serif;">340</div>
+                <div style="color:#4ADE80;font-size:10px;">↑ 8.5%</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;">
+                <div style="color:rgba(255,255,255,0.65);font-size:10px;">Avg Rating</div>
+                <div style="color:white;font-size:20px;font-weight:800;font-family:'Sora',sans-serif;">4.8 ⭐</div>
+                <div style="color:#4ADE80;font-size:10px;">↑ 0.2</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;">
+                <div style="color:rgba(255,255,255,0.65);font-size:10px;">Completion</div>
+                <div style="color:white;font-size:20px;font-weight:800;font-family:'Sora',sans-serif;">96.4%</div>
+                <div style="color:#4ADE80;font-size:10px;">↑ 1.2%</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:14px 16px;">
+            <!-- Revenue Trend Chart (SVG bars) -->
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);margin-bottom:10px;">
+              <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:10px;">REVENUE TREND</div>
+              <svg viewBox="0 0 260 80" style="width:100%;height:70px;">
+                <polyline points="10,65 50,50 90,55 130,30 170,40 210,20 250,25" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="10,65 50,50 90,55 130,30 170,40 210,20 250,25 250,75 10,75" fill="url(#revGrad)" stroke="none"/>
+                <defs><linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4F46E5" stop-opacity="0.2"/><stop offset="100%" stop-color="#4F46E5" stop-opacity="0"/></linearGradient></defs>
+                <text x="10" y="78" font-size="8" fill="#94A3B8">W1</text>
+                <text x="50" y="78" font-size="8" fill="#94A3B8">W2</text>
+                <text x="90" y="78" font-size="8" fill="#94A3B8">W3</text>
+                <text x="130" y="78" font-size="8" fill="#94A3B8">W4</text>
+                <text x="170" y="78" font-size="8" fill="#94A3B8">W5</text>
+              </svg>
+            </div>
+            <!-- Order Volume bars -->
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:10px;">ORDER VOLUME — BY DAY</div>
+              <div style="display:flex;align-items:flex-end;gap:5px;height:50px;">
+                <div style="flex:1;background:var(--primary-light);border-radius:4px 4px 0 0;opacity:0.6;" style="height:40%;"></div>
+                <div style="flex:1;height:55%;background:var(--primary-light);border-radius:4px 4px 0 0;opacity:0.7;"></div>
+                <div style="flex:1;height:45%;background:var(--primary-light);border-radius:4px 4px 0 0;opacity:0.7;"></div>
+                <div style="flex:1;height:75%;background:var(--primary);border-radius:4px 4px 0 0;"></div>
+                <div style="flex:1;height:65%;background:var(--primary-light);border-radius:4px 4px 0 0;opacity:0.8;"></div>
+                <div style="flex:1;height:95%;background:var(--accent);border-radius:4px 4px 0 0;"></div>
+                <div style="flex:1;height:85%;background:var(--primary-light);border-radius:4px 4px 0 0;opacity:0.9;"></div>
+              </div>
+              <div style="display:flex;gap:5px;margin-top:4px;">
+                <div style="flex:1;font-size:9px;text-align:center;color:var(--text-muted);">M</div>
+                <div style="flex:1;font-size:9px;text-align:center;color:var(--text-muted);">T</div>
+                <div style="flex:1;font-size:9px;text-align:center;color:var(--text-muted);">W</div>
+                <div style="flex:1;font-size:9px;text-align:center;color:var(--text-muted);">T</div>
+                <div style="flex:1;font-size:9px;text-align:center;color:var(--text-muted);">F</div>
+                <div style="flex:1;font-size:9px;text-align:center;color:var(--text-muted);">S</div>
+                <div style="flex:1;font-size:9px;text-align:center;color:var(--text-muted);">S</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERTICAL PERFORMANCE -->
+    <div>
+      <div class="screen-name-label">32 · Vertical Performance</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <h2 style="font-size:20px;font-weight:800;">Vertical Performance</h2>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:2px;">Compare across business categories</p>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px;">🍛</span><span style="font-size:13px;font-weight:700;">Food Delivery</span></div>
+                <div class="badge badge-success">Top</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px;"><span style="color:var(--text-muted);">Revenue</span><strong>₹42,100</strong></div>
+              <div style="height:6px;background:var(--bg);border-radius:3px;margin-bottom:6px;"><div style="width:85%;height:100%;background:var(--primary);border-radius:3px;"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);"><span>Orders: 210</span><span>Rating: 4.9⭐</span><span>SLA: 97%</span></div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px;">👕</span><span style="font-size:13px;font-weight:700;">Laundry</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px;"><span style="color:var(--text-muted);">Revenue</span><strong>₹18,600</strong></div>
+              <div style="height:6px;background:var(--bg);border-radius:3px;margin-bottom:6px;"><div style="width:55%;height:100%;background:var(--secondary);border-radius:3px;"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);"><span>Orders: 94</span><span>Rating: 4.7⭐</span><span>SLA: 94%</span></div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px;">🚗</span><span style="font-size:13px;font-weight:700;">Car Rental</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px;"><span style="color:var(--text-muted);">Revenue</span><strong>₹7,720</strong></div>
+              <div style="height:6px;background:var(--bg);border-radius:3px;margin-bottom:6px;"><div style="width:25%;height:100%;background:var(--accent);border-radius:3px;"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);"><span>Orders: 36</span><span>Rating: 4.6⭐</span><span>SLA: 92%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPERATIONAL METRICS -->
+    <div>
+      <div class="screen-name-label">33 · Operational Metrics</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <h2 style="font-size:20px;font-weight:800;">Operational Metrics</h2>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:2px;">SLA, delivery & quality indicators</p>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+            <!-- Customer ratings doughnut placeholder -->
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:10px;">CUSTOMER RATINGS DISTRIBUTION</div>
+              <div style="display:flex;gap:6px;align-items:flex-end;height:60px;margin-bottom:6px;">
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div style="width:100%;height:10%;background:#EEF2FF;border-radius:3px;"></div><div style="font-size:9px;color:var(--text-muted);">1⭐</div></div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div style="width:100%;height:15%;background:#EEF2FF;border-radius:3px;"></div><div style="font-size:9px;color:var(--text-muted);">2⭐</div></div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div style="width:100%;height:20%;background:var(--primary-light);border-radius:3px;opacity:0.5;"></div><div style="font-size:9px;color:var(--text-muted);">3⭐</div></div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div style="width:100%;height:55%;background:var(--primary-light);border-radius:3px;opacity:0.7;"></div><div style="font-size:9px;color:var(--text-muted);">4⭐</div></div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><div style="width:100%;height:100%;background:var(--primary);border-radius:3px;"></div><div style="font-size:9px;color:var(--text-muted);">5⭐</div></div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:white;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);text-align:center;">
+                <div style="font-size:22px;font-weight:800;font-family:'Sora',sans-serif;color:var(--success);">96.4%</div>
+                <div style="font-size:10px;color:var(--text-muted);">SLA Compliance</div>
+              </div>
+              <div style="background:white;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);text-align:center;">
+                <div style="font-size:22px;font-weight:800;font-family:'Sora',sans-serif;color:var(--accent);">24m</div>
+                <div style="font-size:10px;color:var(--text-muted);">Avg Prep Time</div>
+              </div>
+              <div style="background:white;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);text-align:center;">
+                <div style="font-size:22px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">1.2%</div>
+                <div style="font-size:10px;color:var(--text-muted);">Cancellation</div>
+              </div>
+              <div style="background:white;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);text-align:center;">
+                <div style="font-size:22px;font-weight:800;font-family:'Sora',sans-serif;color:var(--info);">0.8%</div>
+                <div style="font-size:10px;color:var(--text-muted);">Refund Rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ §11 REVIEWS & REPUTATION ═══════════════ -->
+  <div class="section-label">⭐ Reviews & Reputation</div>
+  <div class="screens-grid">
+
+    <!-- REVIEWS LIST -->
+    <div>
+      <div class="screen-name-label">34 · Reviews List</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <h2 style="font-size:20px;font-weight:800;">Reviews</h2>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div style="font-size:24px;font-weight:800;font-family:'Sora',sans-serif;color:var(--primary);">4.8</div>
+                <div style="font-size:14px;">⭐⭐⭐⭐⭐</div>
+                <div style="font-size:10px;color:var(--text-muted);">340 reviews</div>
+              </div>
+            </div>
+            <!-- rating bars -->
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span>5⭐</span><div style="flex:1;height:5px;background:var(--bg);border-radius:3px;"><div style="width:78%;height:100%;background:var(--success);border-radius:3px;"></div></div><span style="color:var(--text-muted);">78%</span></div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span>4⭐</span><div style="flex:1;height:5px;background:var(--bg);border-radius:3px;"><div style="width:14%;height:100%;background:var(--primary-light);border-radius:3px;"></div></div><span style="color:var(--text-muted);">14%</span></div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span>3⭐</span><div style="flex:1;height:5px;background:var(--bg);border-radius:3px;"><div style="width:5%;height:100%;background:var(--accent);border-radius:3px;"></div></div><span style="color:var(--text-muted);">5%</span></div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span>2⭐</span><div style="flex:1;height:5px;background:var(--bg);border-radius:3px;"><div style="width:2%;height:100%;background:var(--error);border-radius:3px;"></div></div><span style="color:var(--text-muted);">2%</span></div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span>1⭐</span><div style="flex:1;height:5px;background:var(--bg);border-radius:3px;"><div style="width:1%;height:100%;background:var(--error);border-radius:3px;"></div></div><span style="color:var(--text-muted);">1%</span></div>
+            </div>
+          </div>
+          <div style="padding:12px 16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                <div>
+                  <div style="font-size:13px;font-weight:700;">Riya Mehta</div>
+                  <div style="font-size:12px;color:var(--accent);">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);">Nov 16</div>
+              </div>
+              <div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;">Amazing biryani! Packed perfectly and arrived hot. Will order again 🙏</div>
+              <button style="font-size:11px;color:var(--primary);font-weight:600;background:none;border:none;cursor:pointer;padding:0;">💬 Reply →</button>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                <div>
+                  <div style="font-size:13px;font-weight:700;">Karan Shah</div>
+                  <div style="font-size:12px;color:var(--accent);">⭐⭐⭐</div>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);">Nov 14</div>
+              </div>
+              <div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;">Took longer than expected but food was decent.</div>
+              <div style="display:flex;gap:6px;">
+                <button style="font-size:11px;color:var(--primary);font-weight:600;background:none;border:none;cursor:pointer;padding:0;">💬 Reply →</button>
+                <button style="font-size:11px;color:var(--error);font-weight:600;background:none;border:none;cursor:pointer;padding:0;">🚩 Report</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVIEW DETAIL / RESPOND -->
+    <div>
+      <div class="screen-name-label">35 · Review Detail & Response</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <div style="font-size:22px;cursor:pointer;margin-bottom:8px;">‹</div>
+            <h2 style="font-size:18px;font-weight:800;">Review Detail</h2>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:white;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--secondary),#7A9A6A);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:16px;">K</div>
+                <div>
+                  <div style="font-size:13px;font-weight:700;">Karan Shah</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Order #4821 · Nov 14, 2025</div>
+                </div>
+              </div>
+              <div style="font-size:16px;color:var(--accent);margin-bottom:8px;">⭐⭐⭐ (3/5)</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Took longer than expected but food was decent. Could improve packaging.</div>
+            </div>
+            <!-- provider reply -->
+            <div style="background:#EEF2FF;border-radius:var(--radius);padding:14px;border-left:3px solid var(--primary);">
+              <div style="font-size:11px;font-weight:700;color:var(--primary);margin-bottom:6px;">YOUR RESPONSE</div>
+              <textarea style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px;font-size:12px;font-family:'DM Sans',sans-serif;resize:none;background:white;outline:none;height:80px;">Hi Karan, thank you for your honest feedback! We're working on improving our delivery times. We hope to serve you better next time! 🙏</textarea>
+              <div style="display:flex;gap:8px;margin-top:8px;">
+                <button class="btn btn-sm btn-ghost" style="flex:1;">Discard</button>
+                <button class="btn btn-sm btn-primary" style="flex:1;">Post Reply</button>
+              </div>
+            </div>
+            <!-- report abuse -->
+            <button style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:12px;font-size:12px;font-weight:600;color:var(--error);cursor:pointer;text-align:left;">🚩 Report this review as inappropriate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ §12 SETTINGS & BUSINESS PROFILE ═══════════════ -->
+  <div class="section-label">⚙️ Settings & Business Profile</div>
+  <div class="screens-grid">
+
+    <!-- BUSINESS PROFILE -->
+    <div>
+      <div class="screen-name-label">36 · Business Profile</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:44px 16px 20px;">
+            <div style="font-size:22px;cursor:pointer;margin-bottom:12px;color:white;">‹</div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:64px;height:64px;border-radius:20px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid rgba(255,255,255,0.4);">🏪</div>
+              <div>
+                <div style="color:white;font-size:18px;font-weight:800;">Spice Garden</div>
+                <div style="color:rgba(255,255,255,0.7);font-size:11px;">FSSAI: 21224000000123</div>
+                <div class="badge" style="background:rgba(255,255,255,0.2);color:white;font-size:10px;margin-top:4px;">✅ Verified</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;margin-bottom:10px;">BASIC INFO</div>
+              <label class="input-label">Business Name</label>
+              <input class="input-field" value="Spice Garden" style="margin-bottom:10px;">
+              <label class="input-label">Category</label>
+              <input class="input-field" value="Food & Beverages" style="margin-bottom:10px;">
+              <label class="input-label">GST Number</label>
+              <input class="input-field" value="29ABCDE1234F1Z5">
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;margin-bottom:10px;">ADDRESS</div>
+              <input class="input-field" value="12, 5th Cross, Koramangala 5th Block, Bengaluru – 560095">
+            </div>
+            <button class="btn btn-primary">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE AREAS MAP -->
+    <div>
+      <div class="screen-name-label">37 · Service Areas Map</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);display:flex;flex-direction:column;">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);flex-shrink:0;">
+            <div style="font-size:22px;cursor:pointer;margin-bottom:6px;">‹</div>
+            <h2 style="font-size:18px;font-weight:800;">Service Areas</h2>
+            <p style="font-size:11px;color:var(--text-muted);">Define zones where you accept orders</p>
+          </div>
+          <!-- map placeholder -->
+          <div style="flex:1;background:linear-gradient(135deg,#DBEAFE,#EEF2FF);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:280px;">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(99,102,241,0.08) 28px,rgba(99,102,241,0.08) 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(99,102,241,0.08) 28px,rgba(99,102,241,0.08) 29px);"></div>
+            <!-- zone circles -->
+            <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(79,70,229,0.12);border:2px dashed var(--primary);display:flex;align-items:center;justify-content:center;">
+              <div style="width:80px;height:80px;border-radius:50%;background:rgba(79,70,229,0.2);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:18px;">📍</div>
+            </div>
+            <!-- zone labels -->
+            <div style="position:absolute;top:20px;right:20px;background:white;border-radius:10px;padding:6px 10px;font-size:10px;font-weight:700;color:var(--primary);box-shadow:var(--shadow-sm);">Zone 1: 2km · Active</div>
+            <div style="position:absolute;bottom:20px;left:20px;background:white;border-radius:10px;padding:6px 10px;font-size:10px;font-weight:700;color:var(--text-muted);box-shadow:var(--shadow-sm);">Zone 2: 5km · Draft</div>
+          </div>
+          <div style="padding:12px 14px;flex-shrink:0;">
+            <button class="btn btn-primary" style="font-size:13px;">+ Add New Zone</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPERATING HOURS -->
+    <div>
+      <div class="screen-name-label">38 · Operating Hours</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <div style="font-size:22px;cursor:pointer;margin-bottom:6px;">‹</div>
+            <h2 style="font-size:18px;font-weight:800;">Operating Hours</h2>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;margin-bottom:10px;">WEEKLY SCHEDULE</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div class="avail-row"><span class="avail-day">Mon</span><span class="avail-time">9:00 AM – 10:00 PM</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day">Tue</span><span class="avail-time">9:00 AM – 10:00 PM</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day">Wed</span><span class="avail-time">9:00 AM – 10:00 PM</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day">Thu</span><span class="avail-time">9:00 AM – 10:00 PM</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day">Fri</span><span class="avail-time">9:00 AM – 11:00 PM</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day">Sat</span><span class="avail-time">8:00 AM – 11:00 PM</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day">Sun</span><span class="avail-time" style="color:var(--error);">Closed</span><div class="toggle off"></div></div>
+              </div>
+            </div>
+            <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:var(--radius);padding:12px;font-size:12px;color:#92400E;">
+              💡 Tip: Changes apply from next calendar day. Existing orders won't be affected.
+            </div>
+            <button class="btn btn-primary">Save Hours</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM ROLES & PERMISSIONS -->
+    <div>
+      <div class="screen-name-label">39 · Team Roles & Permissions</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h2 style="font-size:18px;font-weight:800;">Team & Roles</h2>
+              <button class="btn btn-sm btn-accent">+ Invite</button>
+            </div>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+            <div style="background:white;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">A</div>
+              <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">Ahmed (You)</div>
+                <div style="font-size:11px;color:var(--text-muted);">ahmed@spicegarden.in</div>
+              </div>
+              <div class="badge badge-primary">Owner</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--secondary),#7A9A6A);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">S</div>
+              <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">Surya</div>
+                <div style="font-size:11px;color:var(--text-muted);">surya@spicegarden.in</div>
+              </div>
+              <div class="badge badge-success">Manager</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:#FEF3C7;display:flex;align-items:center;justify-content:center;color:#D97706;font-weight:700;">P</div>
+              <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">Priya</div>
+                <div style="font-size:11px;color:var(--text-muted);">priya@spicegarden.in</div>
+              </div>
+              <div class="badge badge-warning">Staff</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;margin-bottom:8px;">ROLE PERMISSIONS</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;">
+                <div style="display:flex;justify-content:space-between;"><span>View Orders</span><span style="color:var(--success);">✓ All</span></div>
+                <div style="display:flex;justify-content:space-between;"><span>Manage Catalog</span><span style="color:var(--accent);">Manager+</span></div>
+                <div style="display:flex;justify-content:space-between;"><span>Access Earnings</span><span style="color:var(--error);">Owner only</span></div>
+                <div style="display:flex;justify-content:space-between;"><span>Invite Members</span><span style="color:var(--error);">Owner only</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATION PREFERENCES -->
+    <div>
+      <div class="screen-name-label">40 · Notification Preferences</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="padding:44px 16px 14px;background:white;border-bottom:1px solid var(--border);">
+            <div style="font-size:22px;cursor:pointer;margin-bottom:6px;">‹</div>
+            <h2 style="font-size:18px;font-weight:800;">Notifications</h2>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;margin-bottom:10px;">ORDERS</div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">New Order</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">SLA Breach Risk</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">Order Cancelled</span><div class="toggle"></div></div>
+              </div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;margin-bottom:10px;">FINANCE</div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">Payout Processed</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">Low Balance Alert</span><div class="toggle off"></div></div>
+              </div>
+            </div>
+            <div style="background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);">
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;margin-bottom:10px;">CHANNELS</div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">Push</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">WhatsApp</span><div class="toggle"></div></div>
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">Email</span><div class="toggle off"></div></div>
+                <div class="avail-row"><span class="avail-day" style="min-width:120px;font-weight:600;font-size:12px;">SMS</span><div class="toggle off"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HELP CENTER -->
+    <div>
+      <div class="screen-name-label">41 · Help Center</div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen" style="background:var(--bg);">
+          <div style="background:linear-gradient(135deg,var(--secondary),#7A9A6A);padding:44px 16px 24px;">
+            <h2 style="color:white;font-size:20px;font-weight:800;margin-bottom:4px;">Help Center</h2>
+            <p style="color:rgba(255,255,255,0.75);font-size:12px;">How can we help you today?</p>
+            <div style="background:white;border-radius:12px;display:flex;align-items:center;padding:10px 14px;gap:8px;margin-top:14px;">
+              <span style="font-size:16px;">🔍</span>
+              <input style="border:none;outline:none;font-size:13px;flex:1;font-family:'DM Sans',sans-serif;" placeholder="Search help articles…">
+            </div>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;margin-bottom:4px;">POPULAR TOPICS</div>
+            <div style="background:white;border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <span style="font-size:20px;">📦</span><div style="flex:1;font-size:13px;font-weight:600;">How to manage orders</div><span style="color:var(--text-muted);">›</span>
+            </div>
+            <div style="background:white;border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <span style="font-size:20px;">💳</span><div style="flex:1;font-size:13px;font-weight:600;">Payouts & settlement</div><span style="color:var(--text-muted);">›</span>
+            </div>
+            <div style="background:white;border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <span style="font-size:20px;">📄</span><div style="flex:1;font-size:13px;font-weight:600;">Re-upload documents</div><span style="color:var(--text-muted);">›</span>
+            </div>
+            <div style="background:white;border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <span style="font-size:20px;">⭐</span><div style="flex:1;font-size:13px;font-weight:600;">Responding to reviews</div><span style="color:var(--text-muted);">›</span>
+            </div>
+            <div style="height:1px;background:var(--border);margin:4px 0;"></div>
+            <button class="btn btn-primary" style="font-size:13px;">🎧 Chat with Support</button>
+            <button class="btn btn-outline" style="font-size:13px;">📞 Call Support (9–6 PM)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ §13 WEB-ONLY FEATURES ═══════════════ -->
+  <div class="section-label">🖥️ Web-Only Features</div>
+  <div class="screens-grid">
+    <div style="grid-column:1/-1;">
+      <div style="background:white;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-md);border-top:4px solid var(--primary);">
+        <h3 style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;margin-bottom:6px;">Desktop / Web Dashboard Enhancements</h3>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:20px;">Features available only in web browser; not shown in mobile phone frames.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:24px;margin-bottom:8px;">📤</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Bulk CSV Import / Export</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Upload menu items, orders, customers, or reports in bulk via CSV. Download any dataset with date-range filters.</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:24px;margin-bottom:8px;">⚡</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Split Screen — Order + Chat</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Side-by-side view of active order detail and the linked customer chat. Available on screens ≥1024px.</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:24px;margin-bottom:8px;">🖨️</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Printable Job Sheets</div>
+            <div style="font-size:12px;color:var(--text-secondary);">One-click print-ready sheets per order with customer details, items, and special instructions. A4 / 80mm thermal.</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:24px;margin-bottom:8px;">📈</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Advanced Analytics Dashboard</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Full-screen charts: cohort retention, revenue heatmaps, item-level profitability, and custom date comparisons.</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:24px;margin-bottom:8px;">⌨️</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Keyboard Shortcuts</div>
+            <div style="font-size:12px;color:var(--text-secondary);"><code style="background:#EEF2FF;padding:1px 5px;border-radius:4px;font-size:11px;">A</code> Accept · <code style="background:#FEF2F2;padding:1px 5px;border-radius:4px;font-size:11px;">R</code> Reject · <code style="background:#EEF2FF;padding:1px 5px;border-radius:4px;font-size:11px;">N</code> New Item · <code style="background:#EEF2FF;padding:1px 5px;border-radius:4px;font-size:11px;">?</code> Help. Full list in Settings.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ §14 ACCOUNT LIFECYCLE ═══════════════ -->
+  <div class="section-label">🔄 Account Lifecycle States</div>
+  <div class="screens-grid">
+    <div style="grid-column:1/-1;">
+      <div style="background:white;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-md);">
+        <h3 style="font-family:'Sora',sans-serif;font-size:16px;font-weight:800;margin-bottom:18px;">Account State Machine</h3>
+        <!-- States pipeline -->
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <div style="background:#F0FDF4;border:2px solid var(--success);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:var(--success);">📝 Draft</div>
+          <div style="color:var(--text-muted);font-size:18px;">→</div>
+          <div style="background:#EEF2FF;border:2px solid var(--primary);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:var(--primary);">⏳ Pending Approval</div>
+          <div style="color:var(--text-muted);font-size:18px;">→</div>
+          <div style="background:#ECFDF5;border:2px solid var(--success);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:var(--success);">✅ Approved</div>
+          <div style="color:var(--text-muted);font-size:18px;">⇄</div>
+          <div style="background:#FFFBEB;border:2px solid #D97706;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:#D97706;">⚠️ Suspended</div>
+          <div style="color:var(--text-muted);font-size:18px;">|</div>
+          <div style="background:#FEF2F2;border:2px solid var(--error);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:var(--error);">❌ Rejected</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+          <div style="background:#F0FDF4;border-radius:10px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--success);margin-bottom:6px;">📝 DRAFT</div>
+            <div style="font-size:11px;color:var(--text-secondary);">Registration in progress. Limited access — can fill profile, upload docs. Cannot accept orders.</div>
+          </div>
+          <div style="background:#EEF2FF;border-radius:10px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--primary);margin-bottom:6px;">⏳ PENDING</div>
+            <div style="font-size:11px;color:var(--text-secondary);">Docs submitted. Read-only access during review. Can track status & contact support. (Screens 6)</div>
+          </div>
+          <div style="background:#ECFDF5;border-radius:10px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--success);margin-bottom:6px;">✅ APPROVED</div>
+            <div style="font-size:11px;color:var(--text-secondary);">Full access. Accept orders, manage catalog, receive payouts, access analytics.</div>
+          </div>
+          <div style="background:#FFFBEB;border-radius:10px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:#D97706;margin-bottom:6px;">⚠️ SUSPENDED</div>
+            <div style="font-size:11px;color:var(--text-secondary);">Read-only. Cannot accept orders. Can view history & contact support. Auto-review after N days. (Screen 8)</div>
+          </div>
+          <div style="background:#FEF2F2;border-radius:10px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--error);margin-bottom:6px;">❌ REJECTED</div>
+            <div style="font-size:11px;color:var(--text-secondary);">Resubmission allowed. Can fix docs & re-apply. Appeal option available. (Screen 7)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ §15 CROSS-CUTTING REQUIREMENTS ═══════════════ -->
+  <div class="section-label">🔐 Cross-Cutting Requirements</div>
+  <div class="screens-grid">
+    <div style="grid-column:1/-1;">
+      <div style="background:white;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-md);border-top:4px solid var(--primary-dark);">
+        <h3 style="font-family:'Sora',sans-serif;font-size:16px;font-weight:800;margin-bottom:18px;">Platform-Wide Technical Requirements</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;">
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:22px;margin-bottom:6px;">🛡️</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Role-Based Access Control</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Owner / Manager / Staff roles. Each role scoped to permitted screens and actions. Enforced on API and UI layers.</div>
+            <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap;">
+              <div class="badge badge-primary">Owner</div>
+              <div class="badge badge-success">Manager</div>
+              <div class="badge badge-muted">Staff</div>
+            </div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:22px;margin-bottom:6px;">📋</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Audit Logs</div>
+            <div style="font-size:12px;color:var(--text-secondary);">All write actions logged: who, what, when. Accessible to Owner. Retained 90 days. Exportable. Examples: order status changes, catalog edits, payout requests.</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:22px;margin-bottom:6px;">🌐</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Localization Ready</div>
+            <div style="font-size:12px;color:var(--text-secondary);">All strings externalised via i18n keys. RTL layout support. Currency, date, and number formatting via locale config. Initial: EN, HI, ML, TA.</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:22px;margin-bottom:6px;">📶</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Offline-Lite Mobile Mode</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Service worker caches last-known orders and catalog. Queues status updates locally. Syncs on reconnect. Banner shown when offline.</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:22px;margin-bottom:6px;">🔒</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Secure Media Upload</div>
+            <div style="font-size:12px;color:var(--text-secondary);">All uploads go via signed URLs. File-type & size validation on client and server. Malware scanning before storage. No direct S3 public access.</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);">
+            <div style="font-size:22px;margin-bottom:6px;">🔔</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Real-time Notifications</div>
+            <div style="font-size:12px;color:var(--text-secondary);">WebSocket / SSE channel for new orders, SLA warnings, payout confirmations, and chat messages. Falls back to polling on restricted networks.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="margin-top:60px;padding:32px;text-align:center;border-top:1px solid var(--border);color:var(--text-muted);font-size:12px;">
+    <p style="font-family:'Sora',sans-serif;font-weight:700;font-size:14px;color:var(--primary);margin-bottom:6px;">Provify Provider App</p>
+    <p>41 Screens · 15 Sections · Auth + Dashboard + Orders + Catalog (6 verticals) + Customers + Messaging + Earnings + Analytics + Reviews + Settings + Web-Only + Lifecycle + Cross-Cutting</p>
+    <p style="margin-top:4px;">Indigo #4F46E5 · Amber #F59E0B · Sage #9CAF88 · Sora + DM Sans</p>
+  </div>
+</div>
+</body>
+</html>

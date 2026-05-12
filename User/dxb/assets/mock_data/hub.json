@@ -1,0 +1,60 @@
+{
+  "locationLabel": "Delivering to",
+  "locationName": "Kakkanad, Kerala",
+  "promoTag": "Limited Offer",
+  "promoTitle": "Get 25% off\nyour first order",
+  "promoSubtitle": "Use code: SERVE25",
+  "promoCta": "Claim Now",
+  "services": [
+    {
+      "id": "food",
+      "title": "Food Delivery",
+      "subtitle": "500+ restaurants",
+      "iconKey": "restaurant",
+      "accentColor": "amber",
+      "route": "/food"
+    },
+    {
+      "id": "laundry",
+      "title": "Laundry",
+      "subtitle": "Pickup & delivery",
+      "iconKey": "laundry",
+      "accentColor": "sage",
+      "route": "/laundry"
+    },
+    {
+      "id": "car",
+      "title": "Car Rental",
+      "subtitle": "Hourly & daily",
+      "iconKey": "car",
+      "accentColor": "primary",
+      "route": "/car"
+    },
+    {
+      "id": "home",
+      "title": "Home Services",
+      "subtitle": "Expert help at home",
+      "iconKey": "handyman",
+      "accentColor": "purple",
+      "route": "/home-services"
+    }
+  ],
+  "recentOrders": [
+    {
+      "id": "ord_food_1",
+      "type": "food",
+      "title": "Biryani House",
+      "subtitle": "2 items · ₹340",
+      "status": "delivered",
+      "iconEmoji": "🍛"
+    },
+    {
+      "id": "ord_laundry_1",
+      "type": "laundry",
+      "title": "SparkClean Laundry",
+      "subtitle": "Wash & Fold · 3.2kg",
+      "status": "in_progress",
+      "iconKey": "laundry"
+    }
+  ]
+}

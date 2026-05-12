@@ -1,0 +1,16 @@
+{
+  "vehicleId": "v1",
+  "vehicleName": "Maruti Swift",
+  "pickupLocation": "Kakkanad Metro Parking",
+  "returnLocation": "Same as pickup",
+  "startDate": "12 May 2026",
+  "endDate": "13 May 2026",
+  "addOns": [
+    {"id": "insurance", "label": "Full insurance", "price": "₹199"},
+    {"id": "gps", "label": "GPS device", "price": "₹99"}
+  ],
+  "baseFare": "₹1,200",
+  "taxes": "₹216",
+  "total": "₹1,514",
+  "confirmationCode": "QDRV-9081"
+}

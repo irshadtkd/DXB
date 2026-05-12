@@ -1,0 +1,7 @@
+{
+  "items": [
+    {"id": "n1", "title": "Order on the way", "body": "Your food from Biryani Palace will arrive in ~12 min.", "time": "2h ago", "read": false, "icon": "delivery_dining"},
+    {"id": "n2", "title": "Cashback credited", "body": "₹40 added to your wallet for order FD-99201.", "time": "Yesterday", "read": true, "icon": "account_balance_wallet"},
+    {"id": "n3", "title": "Weekend offer", "body": "30% off laundry with code WKNDXP.", "time": "May 8", "read": true, "icon": "local_offer"}
+  ]
+}

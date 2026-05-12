@@ -1,0 +1,21 @@
+{
+  "orderId": "LND-7821",
+  "provider": "SparkClean",
+  "pickupDate": "Thu, 8 May",
+  "pickupSlot": "8 AM – 10 AM",
+  "deliveryDate": "Fri, 9 May",
+  "deliverySlot": "By 8 PM",
+  "items": [
+    {"emoji": "👕", "title": "Casuals – Wash & Fold", "subtitle": "~2 kg", "price": "₹160"},
+    {"emoji": "👔", "title": "Formals – Wash & Iron", "subtitle": "~1 kg + 3 items", "price": "₹200"},
+    {"emoji": "🛏", "title": "Bedsheets", "subtitle": "2 pieces", "price": "₹120"}
+  ],
+  "charges": [
+    {"label": "Service charges", "value": "₹480"},
+    {"label": "Pickup & delivery fee", "value": "FREE", "highlight": "sage"},
+    {"label": "Coupon (SPARK30)", "value": "– ₹96", "highlight": "error"},
+    {"label": "GST (18%)", "value": "₹69"}
+  ],
+  "total": "₹453",
+  "paymentMethod": "UPI / GPay"
+}

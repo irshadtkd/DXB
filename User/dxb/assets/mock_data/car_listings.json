@@ -1,0 +1,28 @@
+{
+  "vehicles": [
+    {
+      "id": "v1",
+      "name": "Maruti Swift",
+      "category": "Hatchback",
+      "pricePerDay": "₹1,200",
+      "pricePerHour": "₹180",
+      "rating": 4.6,
+      "trips": 128,
+      "features": ["Petrol", "5 Seater", "Bluetooth"],
+      "imageEmoji": "🚗",
+      "gradient": ["#1C2B6B", "#2E408A"]
+    },
+    {
+      "id": "v2",
+      "name": "Hyundai Creta",
+      "category": "SUV",
+      "pricePerDay": "₹2,400",
+      "pricePerHour": "₹320",
+      "rating": 4.8,
+      "trips": 64,
+      "features": ["Diesel", "5 Seater", "Sunroof"],
+      "imageEmoji": "🚙",
+      "gradient": ["#3D7A5F", "#2D6349"]
+    }
+  ]
+}
