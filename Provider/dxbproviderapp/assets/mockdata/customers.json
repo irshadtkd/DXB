@@ -1,0 +1,7 @@
+{
+  "customers": [
+    {"id": "c1", "name": "Ahmed K.", "email": "ahmed@email.com", "orders": 42, "spend": 12840},
+    {"id": "c2", "name": "Sara M.", "email": "sara@email.com", "orders": 18, "spend": 4100},
+    {"id": "c3", "name": "Omar R.", "email": "omar@email.com", "orders": 7, "spend": 2100}
+  ]
+}

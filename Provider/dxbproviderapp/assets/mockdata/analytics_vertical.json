@@ -1,0 +1,7 @@
+{
+  "verticals": [
+    {"name": "Food", "sharePct": 72, "revenue": 348000},
+    {"name": "Catering", "sharePct": 18, "revenue": 87000},
+    {"name": "Retail add-ons", "sharePct": 10, "revenue": 48000}
+  ]
+}

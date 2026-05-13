@@ -1,0 +1,7 @@
+{
+  "riders": [
+    {"id": "r1", "name": "Hassan Ali", "vehicle": "Bike · DXB-1023", "eta": "8 min"},
+    {"id": "r2", "name": "Priya N.", "vehicle": "Bike · DXB-8891", "eta": "12 min"},
+    {"id": "r3", "name": "Omar F.", "vehicle": "Car · DXB-2210", "eta": "15 min"}
+  ]
+}

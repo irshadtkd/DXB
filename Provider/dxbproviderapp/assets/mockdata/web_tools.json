@@ -1,0 +1,9 @@
+{
+  "features": [
+    {"id": "bulk", "title": "Bulk CSV import / export", "description": "Upload menu items, orders, customers, or reports in bulk via CSV."},
+    {"id": "split", "title": "Split screen — order + chat", "description": "Side-by-side view on screens ≥1024px."},
+    {"id": "print", "title": "Printable job sheets", "description": "A4 / 80mm thermal layouts."},
+    {"id": "adv", "title": "Advanced analytics dashboard", "description": "Cohort retention, revenue heatmaps, item profitability."},
+    {"id": "keys", "title": "Keyboard shortcuts", "description": "A accept · R reject · N new item · ? help."}
+  ]
+}

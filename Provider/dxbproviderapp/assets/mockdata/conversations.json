@@ -1,0 +1,10 @@
+{
+  "threads": [
+    {"id": "t1", "title": "Ahmed K.", "preview": "Can you add extra spice?", "time": "2m", "unread": 2},
+    {"id": "t2", "title": "Support — Provify", "preview": "Your payout was processed.", "time": "1h", "unread": 0}
+  ],
+  "messages_t1": [
+    {"from": "customer", "text": "Can you add extra spice?", "time": "10:12"},
+    {"from": "provider", "text": "Sure, noted for order #4821.", "time": "10:14"}
+  ]
+}

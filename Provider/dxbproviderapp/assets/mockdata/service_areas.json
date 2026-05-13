@@ -1,0 +1,4 @@
+{
+  "areas": ["Downtown", "Business Bay", "DIFC", "JLT"],
+  "center": {"lat": 25.2, "lng": 55.27}
+}

@@ -1,0 +1,6 @@
+{
+  "skus": [
+    {"id": "sku1", "name": "Organic Honey 500g", "stock": 120, "price": 45},
+    {"id": "sku2", "name": "Dates Premium 1kg", "stock": 34, "price": 55}
+  ]
+}

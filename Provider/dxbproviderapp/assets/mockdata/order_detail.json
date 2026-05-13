@@ -1,0 +1,17 @@
+{
+  "id": "4821",
+  "code": "#4821",
+  "status": "preparing",
+  "customer": {"name": "Ahmed K.", "phone": "+971 50 000 0000"},
+  "items": [
+    {"name": "Butter Chicken", "qty": 2, "price": 240},
+    {"name": "Garlic Naan", "qty": 4, "price": 0}
+  ],
+  "timeline": [
+    {"label": "Placed", "time": "10:02 AM"},
+    {"label": "Accepted", "time": "10:04 AM"},
+    {"label": "Preparing", "time": "10:08 AM"}
+  ],
+  "total": 480,
+  "allowedStatuses": ["preparing", "ready", "out_for_delivery", "delivered", "cancelled"]
+}

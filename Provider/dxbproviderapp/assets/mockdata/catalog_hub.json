@@ -1,0 +1,11 @@
+{
+  "verticals": [
+    {"id": "food", "title": "Food menu", "icon": "restaurant", "route": "food"},
+    {"id": "availability", "title": "Availability windows", "icon": "schedule", "route": "availability"},
+    {"id": "laundry", "title": "Laundry services", "icon": "local_laundry_service", "route": "laundry"},
+    {"id": "cars", "title": "Car rental fleet", "icon": "directions_car", "route": "cars"},
+    {"id": "hotels", "title": "Hotel rooms", "icon": "hotel", "route": "hotels"},
+    {"id": "market", "title": "Marketplace / SKU", "icon": "inventory_2", "route": "marketplace"},
+    {"id": "home", "title": "Home services", "icon": "home_repair_service", "route": "home_services"}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "reviews": [
+    {"id": "rv1", "customer": "Sara M.", "rating": 5, "date": "2026-05-02", "text": "Amazing spice level and quick delivery."},
+    {"id": "rv2", "customer": "James P.", "rating": 4, "date": "2026-05-01", "text": "Great food, packaging could be warmer."}
+  ]
+}

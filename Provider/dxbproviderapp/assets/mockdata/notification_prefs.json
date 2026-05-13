@@ -1,0 +1,7 @@
+{
+  "orderPush": true,
+  "orderSms": false,
+  "payoutEmail": true,
+  "marketingEmail": false,
+  "chatPush": true
+}

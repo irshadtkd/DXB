@@ -1,0 +1,6 @@
+{
+  "rooms": [
+    {"id": "rm1", "name": "Deluxe King", "rate": 450, "available": 6},
+    {"id": "rm2", "name": "Twin City View", "rate": 380, "available": 2}
+  ]
+}

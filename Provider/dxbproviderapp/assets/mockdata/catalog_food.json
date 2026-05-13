@@ -1,0 +1,7 @@
+{
+  "items": [
+    {"id": "m1", "name": "Butter Chicken", "price": 120, "active": true},
+    {"id": "m2", "name": "Paneer Tikka", "price": 140, "active": true},
+    {"id": "m3", "name": "Veg Thali", "price": 110, "active": false}
+  ]
+}

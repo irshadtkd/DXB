@@ -1,0 +1,6 @@
+{
+  "fleet": [
+    {"id": "car1", "model": "Toyota Corolla", "plate": "DXB-A1023", "dailyRate": 120, "available": true},
+    {"id": "car2", "model": "Kia Sportage", "plate": "DXB-K2210", "dailyRate": 220, "available": false}
+  ]
+}

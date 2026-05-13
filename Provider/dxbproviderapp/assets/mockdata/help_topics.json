@@ -1,0 +1,7 @@
+{
+  "topics": [
+    {"id": "h1", "title": "Getting payouts", "body": "Payouts are weekly on Mondays for the prior period."},
+    {"id": "h2", "title": "Managing SLA", "body": "Watch the dashboard SLA card for at-risk orders."},
+    {"id": "h3", "title": "Catalog bulk import", "body": "Use Business tools on tablet or web for CSV import."}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "kpis": [
+    {"label": "Gross revenue", "value": "₹4.82L", "delta": "+12%"},
+    {"label": "Active customers", "value": "1,204", "delta": "+4%"},
+    {"label": "Avg order value", "value": "₹312", "delta": "-1%"}
+  ],
+  "chart": [0.3, 0.5, 0.45, 0.7, 0.6, 0.85, 0.55]
+}

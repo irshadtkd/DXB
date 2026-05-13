@@ -1,0 +1,6 @@
+{
+  "services": [
+    {"id": "l1", "name": "Wash & Fold", "priceFrom": 15, "unit": "kg"},
+    {"id": "l2", "name": "Dry clean — suit", "priceFrom": 45, "unit": "pc"}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "greetingKey": "morning",
+  "businessName": "Ahmed's Spice Garden",
+  "todayRevenue": 12840,
+  "revenueCurrency": "INR",
+  "revenueChangePct": 18.4,
+  "todayOrders": 28,
+  "completionPct": 96,
+  "rating": 4.8,
+  "slaAlert": {
+    "orderId": "4821",
+    "title": "SLA Risk — Order #4821",
+    "subtitle": "Delivery due in 12 mins",
+    "timer": "12:04"
+  },
+  "alerts": [
+    {"icon": "bolt", "title": "Low Stock Alert", "message": "Paneer Tikka down to 3 portions", "isError": false},
+    {"icon": "error", "title": "Order Rejected", "message": "Customer Ahmed cancelled #4820", "isError": true}
+  ],
+  "recentOrders": [
+    {"id": "4821", "title": "Butter Chicken × 2", "subtitle": "Order #4821 · 2 mins ago", "amount": 480, "status": "preparing"},
+    {"id": "4820", "title": "Veg Thali × 1", "subtitle": "Order #4820 · 15 mins ago", "amount": 220, "status": "delivered"}
+  ],
+  "weeklyBars": [0.45, 0.65, 0.55, 0.8, 0.7, 0.95, 0.4]
+}

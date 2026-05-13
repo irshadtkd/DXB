@@ -1,0 +1,6 @@
+{
+  "jobs": [
+    {"id": "j1", "name": "AC Duct cleaning", "duration": "90 min", "fromPrice": 199},
+    {"id": "j2", "name": "Deep home cleaning", "duration": "4 hrs", "fromPrice": 399}
+  ]
+}

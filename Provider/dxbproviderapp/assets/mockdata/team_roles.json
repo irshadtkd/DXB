@@ -1,0 +1,7 @@
+{
+  "members": [
+    {"name": "Ahmed", "email": "ahmed@owner.ae", "role": "Owner", "permissions": "Full access"},
+    {"name": "Laila", "email": "laila@staff.ae", "role": "Manager", "permissions": "Orders, catalog, payouts"},
+    {"name": "Ravi", "email": "ravi@staff.ae", "role": "Staff", "permissions": "Orders only"}
+  ]
+}

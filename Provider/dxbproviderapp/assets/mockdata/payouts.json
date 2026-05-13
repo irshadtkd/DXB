@@ -1,0 +1,7 @@
+{
+  "payouts": [
+    {"id": "p1", "date": "2026-05-01", "amount": 12000, "status": "paid", "method": "Bank transfer"},
+    {"id": "p2", "date": "2026-04-24", "amount": 9800, "status": "paid", "method": "Bank transfer"},
+    {"id": "p3", "date": "2026-05-10", "amount": 4200, "status": "pending", "method": "UPI"}
+  ]
+}

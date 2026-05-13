@@ -1,0 +1,7 @@
+{
+  "orders": [
+    {"id": "4821", "code": "#4821", "title": "Butter Chicken × 2", "customer": "Ahmed K.", "amount": 480, "status": "preparing", "time": "2m ago"},
+    {"id": "4820", "code": "#4820", "title": "Veg Thali × 1", "customer": "Sara M.", "amount": 220, "status": "delivered", "time": "15m ago"},
+    {"id": "4819", "code": "#4819", "title": "Family Combo", "customer": "Omar R.", "amount": 890, "status": "ready", "time": "32m ago"}
+  ]
+}
